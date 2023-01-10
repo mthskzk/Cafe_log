@@ -1,0 +1,2 @@
+class KeepCafe < ApplicationRecord
+end

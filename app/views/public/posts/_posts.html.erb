@@ -17,6 +17,8 @@
             コメント<%= post1.post_comments.count %>件
           <% end %>
         <% end %>
+        <!--いいね機能-->
+        <%= render "public/favorites/btn", post1: post1 %>
         <!--自分の投稿の時は削除ができる-->
         <% if post1.customer == current_customer %>
           <%= link_to '削除', post_path(post1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } %>

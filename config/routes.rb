@@ -42,10 +42,11 @@ Rails.application.routes.draw do
     resources :maps, only: [:index]
     resources :posts, only: [:new, :index, :create, :destroy] do
       resources :post_comments, only: [:index, :create, :destroy]
+      resource :favorites, only: [:create, :destroy]
+      resources :favorites, only: [:index]
     end
     resources :reviews, only: [:new, :index, :create, :destroy]
     resources :keep_caves, only: [:index, :create, :destroy]
-    resources :favorites, only: [:index, :create, :destroy]
     get 'customers/unsubscribe'
     patch 'customers/withdrawal'
     resources :customers, only: [:show, :edit, :update] do

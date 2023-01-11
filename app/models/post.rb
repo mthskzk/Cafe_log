@@ -10,4 +10,8 @@ class Post < ApplicationRecord
   # 複数枚の画像を取り込み
   has_many_attached :images
 
+  def favorited_by?(customer)
+    favorites.exists?(customer_id: customer.id)
+  end
+
 end

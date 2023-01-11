@@ -2,11 +2,25 @@
   <% if posts.exists? %>
     <% posts.each do |post1| %>
       <li>
-        <%= post1.body %>
         <% post1.images.each do |image| %>
           <%= image_tag(image, width:100) %>
         <% end %>
-        <%= link_to '削除', post_path(post1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } %>
+        <%= link_to customer_path(post1.customer.id) do %>
+          <%= image_tag post1.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
+          <%= post1.customer.name %>
+        <% end %>
+        <%= post1.body %>
+        <%= link_to "コメントする", post_post_comments_path(post1.id) %>
+        <!--コメントがあるとき件数を表示-->
+        <% if post1.post_comments.exists? %>
+          <%= link_to post_post_comments_path(post1.id) do %>
+            コメント<%= post1.post_comments.count %>件
+          <% end %>
+        <% end %>
+        <!--自分の投稿の時は削除ができる-->
+        <% if post1.customer == current_customer %>
+          <%= link_to '削除', post_path(post1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } %>
+        <% end %>
       </li>
     <% end %>
   <% else %>

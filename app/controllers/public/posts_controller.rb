@@ -4,6 +4,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
+    @customer = current_customer
     @posts = Post.all
   end
 

@@ -24,4 +24,20 @@ class Customer < ApplicationRecord
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
 
+  def get_profile_image
+    (profile_image.attached?) ? profile_image: "no_image_user.png"
+  end
+
+  def follow(customer)
+    relationships.create(followed_id: customer.id)
+  end
+
+  def unfollow(customer)
+    relationships.find_by(followed_id: customer.id).destroy
+  end
+
+  def following?(customer)
+    followings.include?(customer)
+  end
+
 end

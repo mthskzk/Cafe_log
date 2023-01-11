@@ -40,17 +40,19 @@ Rails.application.routes.draw do
     get 'searches/search_review'
     get 'searches/search_cafe'
     resources :maps, only: [:index]
-    resources :posts, only: [:new, :index, :create, :destroy]
+    resources :posts, only: [:new, :index, :create, :destroy] do
+      resources :post_comments, only: [:index, :create, :destroy]
+    end
     resources :reviews, only: [:new, :index, :create, :destroy]
     resources :keep_caves, only: [:index, :create, :destroy]
-    resources :post_comments, only: [:index, :create, :destroy]
     resources :favorites, only: [:index, :create, :destroy]
-    get 'relationships/followings'
-    get 'relationships/followers'
-    resources :relationships, only: [:create, :destroy]
     get 'customers/unsubscribe'
     patch 'customers/withdrawal'
-    resources :customers, only: [:show, :edit, :update]
+    resources :customers, only: [:show, :edit, :update] do
+      get 'followings' => 'relationships#followings', as: 'followings'
+  	  get 'followers' => 'relationships#followers', as: 'followers'
+      resource :relationships, only: [:create, :destroy]
+    end
     resources :caves, only: [:index, :show]
   end
 

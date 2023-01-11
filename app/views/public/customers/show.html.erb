@@ -1,2 +1,19 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>User info</h2>
+      <h5>
+        <% if @customer == current_customer %>
+          <%= link_to "会員情報を編集", edit_customer_path(@customer) %>
+        <% else %>
+          <%= render 'public/relationships/btn', customer: @customer %>
+        <% end %>
+      </h5>
+      <%= render 'info', customer: @customer %>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <h2>投稿</h2>
+      <%= render 'public/posts/posts',posts: @posts %>
+    </div>
+  </div>
+</div>

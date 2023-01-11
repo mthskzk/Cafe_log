@@ -1,0 +1,34 @@
+<table class='table'>
+  <tbody>
+    <tr>
+        <%= image_tag customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
+        <%= customer.name %>
+    </tr>
+    <tr>
+      <th>フォロー中</th>
+      <th><%= link_to customer.followings.count, customer_followings_path(customer) %></th>
+    </tr>
+    <tr>
+      <th>フォロワー</th>
+      <th><%= link_to customer.followers.count, customer_followers_path(customer) %></th>
+    </tr>
+    <tr>
+      <th>
+        投稿<%= customer.posts.count %>件
+      </th>
+      <th>
+        <% if customer == current_customer %>
+          <%= link_to "新規投稿", new_post_path %>
+        <% end %>
+      </th>
+    </tr>
+    <tr>
+      <th>レビュー<%= customer.reviews.count %>件</th>
+      <th>
+        <% if customer == current_customer %>
+          <%= link_to "新規レビュー", new_review_path %>
+        <% end %>
+      </th>
+    </tr>
+  </tbody>
+</table>

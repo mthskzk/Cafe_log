@@ -1,3 +1,14 @@
-<h1>SNSトップページ</h1>
-<%= link_to "新規投稿", new_post_path %>
-<%= render 'posts', posts: @posts %>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>User info</h2>
+      <h5>SNSトップページ</h5>
+      <%= render 'public/customers/info', customer: @customer %>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <h2>投稿</h2>
+      <%= render 'posts',posts: @posts %>
+    </div>
+  </div>
+</div>
+

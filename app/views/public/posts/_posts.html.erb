@@ -1,0 +1,17 @@
+<div class="post-partial">
+  <% if posts.exists? %>
+    <% posts.each do |post1| %>
+      <li>
+        <%= post1.body %>
+        <% post1.images.each do |image| %>
+          <%= image_tag(image, width:100) %>
+        <% end %>
+        <%= link_to '削除', post_path(post1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } %>
+      </li>
+    <% end %>
+  <% else %>
+    <li>
+      まだ投稿されてません
+    </li>
+  <% end %>
+</div>

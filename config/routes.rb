@@ -17,15 +17,16 @@ Rails.application.routes.draw do
     get 'homes/top'
     resources :customers, only: [:index, :edit, :show, :update]
     get 'posts/confirm'
-    resources :posts, only: [:index, :destroy]
+    resources :posts, only: [:index, :destroy] do
+      resources :post_comments, only: [:index, :destroy]
+      resources :favorites, only: [:index]
+    end
     get 'searches/search_sns'
     get 'searches/search_review'
     get 'searches/search_cafe'
     get 'reviews/confirm'
     resources :reviews, only: [:index, :destroy]
     get 'post_comments/confirm'
-    resources :post_comments, only: [:index, :destroy]
-    resources :favorites, only: [:index]
     get 'relationships/followings'
     get 'relationships/followers'
     get 'caves/unsubscribe'

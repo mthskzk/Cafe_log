@@ -6,5 +6,8 @@ class Public::SearchesController < ApplicationController
   end
 
   def search_cafe
+    @area = params[:area]
+    @key_word = params[:key_word]
+    @cafes = Cafe.search_for(@area, @key_word)
   end
 end

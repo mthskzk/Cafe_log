@@ -1,0 +1,12 @@
+<div class="">
+  <% cafes.each do |cafe| %>
+    <div>
+      <%= link_to cafe_path(cafe.id) do%>
+        <%= image_tag(cafe.image, width:100) %>
+        <%= cafe.name %>
+      <% end %>
+      <%= cafe.prefectures %>
+      <!--レビューのレートを入れる-->
+    </div>
+  <% end %>
+</div>

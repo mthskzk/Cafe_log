@@ -1,2 +1,11 @@
-<h1>Public::Searches#search_cafe</h1>
-<p>Find me in app/views/public/searches/search_cafe.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>このエリアから探す</h2>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <h2>検索結果</h2>
+      <%= render 'public/caves/index',cafes: @cafes %>
+    </div>
+  </div>
+</div>

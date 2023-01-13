@@ -3,5 +3,6 @@ class Public::CavesController < ApplicationController
   end
 
   def show
+    @cafe = Cafe.find(params[:id])
   end
 end

@@ -1,2 +1,52 @@
-<h1>Public::Caves#show</h1>
-<p>Find me in app/views/public/caves/show.html.erb</p>
+<div class="container">
+  <div class="row ">
+    <div class="col-6">
+      <div class="">
+        <%= @cafe.name %>
+        <% if @cafe.is_deleted == true %>
+          閉店
+        <% end %>
+      </div>
+      <div class="">
+        <%= image_tag @cafe.get_image, size: '400x300' %>
+      </div>
+      <div class="">
+        <%= link_to "SNSで投稿", new_post_path, class: "btn btn-success", style: "margin: 10px;" %>
+        <%= link_to "レビューする", new_review_path, class: "btn btn-primary", style: "margin: 10px;" %>
+      </div>
+    </div>
+    <div class="col-6">
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to admin_posts_path do %>
+                投稿数<%= @cafe.posts.count %>件
+              <% end %>
+            </td>
+            <td>
+              <%= link_to admin_reviews_path do %>
+                レビュー<%= @cafe.reviews.count %>件
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        住所 <%= @cafe.address_display %>
+      </div>
+      <div class="row">
+        最寄り駅 <%= @cafe.nearest_station %>
+      </div>
+      <div class="row">
+        電話番号 <%= @cafe.telephone_number %>
+      </div>
+      <div class="row">
+        営業時間 <%= @cafe.business_hours %>
+      </div>
+      <div class="row">
+        定休日 <%= @cafe.regular_holiday %>
+      </div>
+    </div>
+  </div>
+</div>

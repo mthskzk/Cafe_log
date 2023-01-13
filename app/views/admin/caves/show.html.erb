@@ -5,7 +5,7 @@
         <%= @cafe.name %>
       </div>
       <div class="">
-        <%= image_tag(@cafe.image, width:100) %>
+        <%= image_tag @cafe.get_image, size: '120x100' %>
       </div>
       <div class="">
         <%= link_to "カフェ情報の編集", edit_admin_cafe_path(@cafe.id), class: "btn btn-success" %>

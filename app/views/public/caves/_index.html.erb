@@ -2,7 +2,7 @@
   <% cafes.each do |cafe| %>
     <div>
       <%= link_to cafe_path(cafe.id) do%>
-        <%= image_tag(cafe.image, width:100) %>
+        <%= image_tag cafe.get_image, size: '120x100' %>
         <%= cafe.name %>
       <% end %>
       <%= cafe.prefectures %>

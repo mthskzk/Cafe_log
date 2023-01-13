@@ -15,7 +15,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'homes/top'
-    resources :customers, only: [:index, :edit, :show, :update]
+    resources :customers, only: [:index, :edit, :show, :update] do
+      get 'relationships/followings'
+      get 'relationships/followers'
+    end
     get 'posts/confirm'
     resources :posts, only: [:index, :destroy] do
       resources :post_comments, only: [:index, :destroy]
@@ -27,8 +30,6 @@ Rails.application.routes.draw do
     get 'reviews/confirm'
     resources :reviews, only: [:index, :destroy]
     get 'post_comments/confirm'
-    get 'relationships/followings'
-    get 'relationships/followers'
     get 'caves/unsubscribe'
     patch 'caves/withdrawal'
     resources :caves, only: [:new, :index, :create, :edit, :show, :update]

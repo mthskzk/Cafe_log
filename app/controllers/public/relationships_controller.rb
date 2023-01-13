@@ -1,5 +1,5 @@
 class Public::RelationshipsController < ApplicationController
-   def create
+  def create
     customer = Customer.find(params[:customer_id])
     current_customer.follow(customer)
     redirect_to request.referer

@@ -1,2 +1,12 @@
-<h1>Admin::Relationships#followers</h1>
-<p>Find me in app/views/admin/relationships/followers.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>フォロワー <%= @customer.followers.count %>人</h2>
+      <% if @followers.exists? %>
+        <%= render 'index', customers: @followers %>
+      <% else %>
+        <p>ユーザーはいません</p>
+      <% end %>
+    </div>
+  </div>
+</div>

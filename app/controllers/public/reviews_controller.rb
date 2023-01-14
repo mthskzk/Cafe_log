@@ -4,8 +4,6 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    @customer = current_customr
-
   end
 
   def create
@@ -19,5 +17,11 @@ class Public::ReviewsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def review_params
+    params.require(:review).permit(:body, :rate)
   end
 end

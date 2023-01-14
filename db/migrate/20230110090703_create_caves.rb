@@ -11,6 +11,9 @@ class CreateCaves < ActiveRecord::Migration[6.1]
       t.float :rate
       t.boolean :is_deleted, null: false, default: false
 
+      t.float :latitude
+      t.float :longitude
+
       t.timestamps
     end
   end

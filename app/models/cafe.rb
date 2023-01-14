@@ -16,6 +16,12 @@ class Cafe < ApplicationRecord
   validates :regular_holiday, presence: true
   validates :is_deleted, inclusion: { in: [true, false] }
 
+  # 住所を基準に緯度経度を算出
+  geocoded_by :address_display
+
+  # 住所変更時に緯度経度も変更
+  after_validation :geocode
+
   def get_image
     (image.attached?) ? image: "no_image.png"
   end

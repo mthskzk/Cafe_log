@@ -18,10 +18,11 @@ class Public::FavoritesController < ApplicationController
     redirect_to posts_path
   end
 
+  # ログインユーザーがいいねした投稿の一覧画面
   def like
     @customer = current_customer
     favorites = Favorite.where(customer_id: @customer.id).pluck(:post_id)
-    @posts = Post.find(favorites)
+    @posts = Post.where(id: favorites)
   end
 
 end

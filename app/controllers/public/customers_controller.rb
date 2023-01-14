@@ -17,18 +17,15 @@ class Public::CustomersController < ApplicationController
     end
   end
 
-  # 退会確認ページ
-  def unsubscribe
-    @customer = current_customer
+  def destroy
+    @customer = Customer.find(params[:id])
+    @customer.destroy
+    redirect_to root_path
   end
 
-  # 退会のアクション
-  def withdrawal
+  # 退会確認ページ
+  def confirm
     @customer = current_customer
-    if @customer.update(is_deleted: true)
-      sign_out current_customer
-    end
-    redirect_to root_path
   end
 
   private

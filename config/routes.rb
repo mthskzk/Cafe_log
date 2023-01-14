@@ -15,11 +15,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'homes/top'
-    resources :customers, only: [:index, :edit, :show, :update] do
+    resources :customers, only: [:index, :edit, :show, :update, :destroy] do
       get 'relationships/followings'
       get 'relationships/followers'
     end
-    get 'posts/confirm'
     resources :posts, only: [:index, :destroy] do
       resources :post_comments, only: [:index, :destroy]
       resources :favorites, only: [:index]
@@ -27,9 +26,7 @@ Rails.application.routes.draw do
     get 'searches/search_sns'
     get 'searches/search_review'
     get 'searches/search_cafe'
-    get 'reviews/confirm'
     resources :reviews, only: [:index, :destroy]
-    get 'post_comments/confirm'
     get 'caves/unsubscribe'
     patch 'caves/withdrawal'
     resources :caves, only: [:new, :index, :create, :edit, :show, :update]
@@ -50,9 +47,8 @@ Rails.application.routes.draw do
     end
     resources :reviews, only: [:new, :index, :create, :destroy]
     resources :keep_caves, only: [:index, :create, :destroy]
-    get 'customers/unsubscribe'
-    patch 'customers/withdrawal'
-    resources :customers, only: [:show, :edit, :update] do
+    get 'customers/confirm'
+    resources :customers, only: [:show, :edit, :update, :destroy] do
       get 'followings' => 'relationships#followings', as: 'followings'
   	  get 'followers' => 'relationships#followers', as: 'followers'
       resource :relationships, only: [:create, :destroy]

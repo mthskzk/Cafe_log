@@ -3,9 +3,6 @@ class Admin::PostCommentsController < ApplicationController
      @post = Post.find(params[:post_id])
   end
 
-  def confirm
-  end
-
   def destroy
     @comment = PostComment.find_by(id: params[:id], post_id: params[:post_id])
     @comment.destroy

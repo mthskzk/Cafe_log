@@ -1,5 +1,5 @@
 <div class="post-partial">
-  <!--<--% if posts.exists? %>-->
+  <% if posts.exists? %>
     <% posts.each do |post1| %>
       <li>
         <% post1.images.each do |image| %>
@@ -25,9 +25,9 @@
         <% end %>
       </li>
     <% end %>
-  <!--<--% else %>-->
-    <!--<li>-->
-      <!--まだ投稿されてません-->
-    <!--</li>-->
-  <!--<--% end %>-->
+  <% else %>
+    <li>
+      まだ投稿されてません
+    </li>
+  <% end %>
 </div>

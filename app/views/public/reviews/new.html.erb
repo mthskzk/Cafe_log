@@ -1,0 +1,16 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>新規投稿</h2>
+      <%= form_with(model: @review, local: true) do |f| %>
+        <div>
+          <%= f.label :body, '本文' %>
+          <%= f.text_field :body %>
+        </div>
+        <div>
+          <%= f.submit  'レビューを投稿' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

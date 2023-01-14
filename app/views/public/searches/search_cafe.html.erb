@@ -2,6 +2,8 @@
   <div class='row'>
     <div class='col-md-3'>
       <h2>このエリアから探す</h2>
+      <h4><%= @area %></h4>
+      <h5><%= link_to "地図を見る", maps_path(area: @area) %></h5>
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>検索結果</h2>

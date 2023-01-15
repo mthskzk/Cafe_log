@@ -1,0 +1,29 @@
+<div>
+  <% if reviews.exists? %>
+    <% reviews.each do |review1| %>
+      <table class='table'>
+        <tbody>
+          <tr>
+            <%= link_to customer_path(review1.customer_id) do %>
+              <%= image_tag review1.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
+              <%= review1.customer.name %>
+            <% end %>
+          </tr>
+          <tr>
+            <th>カフェ名</th>
+            <th></th>
+          </tr>
+          <tr>
+            <th>レビュー</th>
+            <td><%= render "rate", review: review1 %></td>
+          </tr>
+          <tr>
+            <td>投稿日</td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+  <% else %>
+    <li>まだレビューがありません</li>
+  <% end %>
+</div>

@@ -13,17 +13,14 @@
         </div>
         <div id="review_raty"></div>
   　     <script>
-          $(document).on('turbolinks:load', function() {
-            let raty_elem = document.querySelector('#review_raty');
-            let option = {
-              starOn: "<%= asset_path('star-on.png') %>",
-              starOff: "<%= asset_path('star-off.png') %>",
-              starHalf: "<%= asset_path('star-half.png') %>",
-              scoreName: 'review[rate]',
-              // half: true,
-            };
-            raty(raty_elem,option);
-          });
+          let option = {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            scoreName: 'review[rate]',
+            half: true,
+          };
+          raty(review_raty,option);
         </script>
 
         <div>

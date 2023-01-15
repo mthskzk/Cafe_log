@@ -1,8 +1,8 @@
 <table class='table'>
   <tbody>
     <tr>
-        <%= image_tag customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
-        <%= customer.name %>
+      <%= image_tag customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
+      <%= customer.name %>
     </tr>
     <tr>
       <th>フォロー中</th>
@@ -23,7 +23,11 @@
       </th>
     </tr>
     <tr>
-      <th>レビュー<%= customer.reviews.count %>件</th>
+      <th>
+        <%= link_to customer_reviews_path(customer) do %>
+          レビュー<%= customer.reviews.count %>件
+        <% end %>
+      </th>
       <th>
         <% if customer == current_customer %>
           <%= link_to "新規レビュー", new_review_path %>

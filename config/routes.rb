@@ -45,13 +45,14 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :favorites, only: [:index]
     end
-    resources :reviews, only: [:new, :index, :create, :destroy]
+    resources :reviews, only: [:new, :create, :destroy]
     resources :keep_caves, only: [:index, :create, :destroy]
     get 'customers/confirm'
     resources :customers, only: [:show, :edit, :update, :destroy] do
       get 'followings' => 'relationships#followings', as: 'followings'
   	  get 'followers' => 'relationships#followers', as: 'followers'
       resource :relationships, only: [:create, :destroy]
+      resources :reviews, only:[:index]
     end
     resources :caves, only: [:index, :show]
   end

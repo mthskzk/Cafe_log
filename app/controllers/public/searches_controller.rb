@@ -1,5 +1,16 @@
 class Public::SearchesController < ApplicationController
   def search_sns
+    @model = params[:model]
+    @content = params[:content]
+    @method = params[:method]
+    if @model == "tag"
+      records = Tag.search_post_for(@content, @method)
+      # array型の配列をActive Recordに変換
+      @records = Post.where(id: records.map(&:id))
+    elsif @model == "post"
+
+    end
+
   end
 
   def search_review

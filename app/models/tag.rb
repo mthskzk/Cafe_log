@@ -5,6 +5,16 @@ class Tag < ApplicationRecord
 
   validates :name, uniqueness: true, presence: true
 
-  scope :merge_posts, -> (tags){ }
+  def self.search_post_for(content, method)
+
+    if method == 'perfect'
+      tags = Tag.where(name: content)
+    else
+      tags = Tag.where('name LIKE ?', '%' + content + '%')
+    end
+    # 検索結果のタグに紐づくpost_idを返す
+    return tags.inject(init = []) {|result, tag| result + tag.posts}
+
+  end
 
 end

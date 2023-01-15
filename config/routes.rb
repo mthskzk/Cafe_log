@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     get 'searches/search_cafe'
     get 'favorites/like'
     resources :maps, only: [:index]
-    resources :posts, only: [:new, :index, :create, :destroy] do
+    resources :posts, only: [:new, :index, :create, :edit, :update, :destroy] do
       resources :post_comments, only: [:index, :create, :destroy]
       resource :favorites, only: [:create, :destroy]
       resources :favorites, only: [:index]

@@ -6,17 +6,33 @@ class Public::PostsController < ApplicationController
   def index
     @customer = current_customer
     @posts = Post.all
+    @tag_list = Tag.all
   end
 
   def create
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id
-    # tag_list = params[:post][:tag_name].split(',') ←タグ機能のやつ
+    tag_list = params[:post][:tag_name].split(',')
     if @post.save
-      # @post.save_tags(tag_list)
+      @post.save_tags(tag_list)
       redirect_to posts_path, notice: "投稿しました"
     else
       render :new
+    end
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    tag_list = params[:post][:tag_name].split(',')
+    if @post.update(post_params)
+       @post.save_tags(tag_list)
+       redirect_to posts_path, notice: "投稿しました"
+    else
+      render:edit
     end
   end
 

@@ -1,2 +1,15 @@
-<h1>Public::Searches#search_sns</h1>
-<p>Find me in app/views/public/searches/search_sns.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>検索結果</h2>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <% if @model == "tag" %>
+        <h2>タグ検索:<%= @content %></h2>
+        <%= render 'public/posts/posts', posts: @records %>
+      <% elsif @model == "cafe" %>
+      <% elsif @model == "user" %>
+      <% end %>
+    </div>
+  </div>
+</div>

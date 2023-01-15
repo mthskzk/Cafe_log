@@ -10,6 +10,12 @@
           <%= post1.customer.name %>
         <% end %>
         <%= post1.body %>
+        <!--投稿に紐づくタグを表示-->
+        タグ:
+        <% post1.tags.each do |tag| %>
+            <%= link_to tag.name,  searches_search_sns_path(content: tag.name, model:"tag", method: "perfect") %>
+        <% end %>
+
         <%= link_to "コメントする", post_post_comments_path(post1.id) %>
         <!--コメントがあるとき件数を表示-->
         <% if post1.post_comments.exists? %>
@@ -19,8 +25,9 @@
         <% end %>
         <!--いいね機能-->
         <%= render "public/favorites/btn", post1: post1 %>
-        <!--自分の投稿の時は削除ができる-->
+        <!--自分の投稿の時は編集・削除ができる-->
         <% if post1.customer == current_customer %>
+          <%= link_to '編集する', edit_post_path(post1.id) %>
           <%= link_to '削除', post_path(post1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } %>
         <% end %>
       </li>

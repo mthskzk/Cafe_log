@@ -1,26 +1,24 @@
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <h2>新規投稿</h2>
-      <%= form_with model: @post, local: true do |f| %>
-        <div>
+      <h2>投稿編集</h2>
+      <%= form_with model: @post, url: post_path, local: true do |f| %>
+        <div class="form-group">
           <%= f.label :body, '本文' %>
           <%= f.text_field :body %>
         </div>
-
-        <div>
+        <div class="form-group">
           <%= f.label :images, '画像' %>
           <%= f.file_field :images, multiple: true %>
         </div>
-
         <div class="form-group">
           <%= f.label "Tag" %>
           <%= f.text_field :tag_name, class: 'form-control book_tag_name' %>
         </div>
         <div>
-          <%= f.submit  '投稿する' %>
+          <%= f.submit  '編集内容を保存', class: 'btn btn-secondary', style: "margin: 10px;" %>
         </div>
       <% end %>
     </div>
   </div>
-</div>
+</div>  

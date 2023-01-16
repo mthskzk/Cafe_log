@@ -3,10 +3,12 @@
     <div class='col-md-3'>
       <h2>User info</h2>
       <h5>
-        <% if @customer == current_customer %>
+        <% if @customer == current_customer and @customer.name != "guestuser" %>
           <%= link_to "会員情報を編集", edit_customer_path(@customer) %>
         <% else %>
-          <%= render 'public/relationships/btn', customer: @customer %>
+          <div id="follow_change_<%= @customer.id %>">
+            <%= render 'public/relationships/btn', customer: @customer %>
+          </div>
         <% end %>
       </h5>
       <%= render 'info', customer: @customer %>

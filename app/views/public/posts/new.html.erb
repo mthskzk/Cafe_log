@@ -3,19 +3,22 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h2>新規投稿</h2>
       <%= form_with model: @post, local: true do |f| %>
-        <div>
+        <div class="form-group">
           <%= f.label :body, '本文' %>
           <%= f.text_field :body %>
         </div>
-
-        <div>
+        <div class="form-group">
           <%= f.label :images, '画像' %>
           <%= f.file_field :images, multiple: true %>
         </div>
-
         <div class="form-group">
           <%= f.label "Tag" %>
           <%= f.text_field :tag_name, class: 'form-control book_tag_name' %>
+        </div>
+        <div class="form-group">
+          <%= f.label "表示状態" %>
+          <%= f.radio_button :status, :false %><%= f.label :post_status_false, "公開" %>&emsp;
+          <%= f.radio_button :status, :true %><%= f.label :post_status_true, "非公開" %>
         </div>
         <div>
           <%= f.submit  '投稿する' %>

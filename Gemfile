@@ -63,7 +63,7 @@ end
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
-
+# customerとadmin用のユーザー機能
 gem "devise"
 
 gem "enum_help"

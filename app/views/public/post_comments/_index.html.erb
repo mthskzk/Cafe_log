@@ -1,0 +1,17 @@
+<% post1.post_comments.each do |post_comment| %>
+  <li>
+    <%= link_to customer_path(post_comment.customer_id) do %>
+      <%= image_tag post_comment.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
+      <%= post_comment.customer.name %>
+    <% end %>
+  </li>
+  <li>
+    <%= post_comment.comment %>
+  </li>
+  <!--自分のコメントの時は削除ボタンが出てくる-->
+  <% if post_comment.customer == current_customer %>
+    <li>
+      <%= link_to '削除', post_post_comment_path(post1.id,post_comment.id), method: :delete, remote: true, data: { confirm: '削除してよろしいですか?' } %>
+    </li>
+  <% end %>
+<% end %>

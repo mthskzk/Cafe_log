@@ -40,4 +40,17 @@ class Customer < ApplicationRecord
     followings.include?(customer)
   end
 
+  # ユーザーネームの部分一致検索
+  def self.search_for(content)
+    Customer.where('name LIKE ?', '%'+content+'%')
+  end
+
+  # ゲストログイン
+  def self.guest
+    find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |customer|
+      customer.password = SecureRandom.urlsafe_base64
+      customer.name = "guestuser"
+    end
+  end
+
 end

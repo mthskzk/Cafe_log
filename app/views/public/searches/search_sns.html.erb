@@ -1,14 +1,23 @@
 <div class='container'>
   <div class='row'>
     <div class='col-md-3'>
-      <h2>検索結果</h2>
+      <% if @model == "customer" %>
+        ユーザー名検索:<%= @content %>
+      <% elsif @model == "post" %>
+        キーワード検索:<%= @content %>
+      <% elsif @model == "tag" %>
+        タグ検索:<%= @content %>
+      <% end %>
+      <h5><%= link_to "検索する", posts_search_path %></h5>
     </div>
     <div class='col-md-8 offset-md-1'>
-      <% if @model == "tag" %>
-        <h2>タグ検索:<%= @content %></h2>
+      <h2>検索結果</h2>
+      <% if @model == "customer" %>
+        <%= render 'public/relationships/index',customers: @records %>
+      <% elsif @model == "post" %>
+        <%= render 'public/posts/posts',posts: @records %>
+      <% elsif @model == "tag" %>
         <%= render 'public/posts/posts', posts: @records %>
-      <% elsif @model == "cafe" %>
-      <% elsif @model == "user" %>
       <% end %>
     </div>
   </div>

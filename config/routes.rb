@@ -13,6 +13,10 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'customers/sessions#guest_sign_in'
+  end
+
   namespace :admin do
     get 'homes/top'
     resources :customers, only: [:index, :edit, :show, :update, :destroy] do
@@ -40,6 +44,7 @@ Rails.application.routes.draw do
     get 'searches/search_cafe'
     get 'favorites/like'
     resources :maps, only: [:index]
+    get 'posts/search'
     resources :posts, only: [:new, :index, :create, :edit, :update, :destroy] do
       resources :post_comments, only: [:index, :create, :destroy]
       resource :favorites, only: [:create, :destroy]
@@ -55,6 +60,7 @@ Rails.application.routes.draw do
       resources :reviews, only:[:index]
     end
     resources :caves, only: [:index, :show]
+
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

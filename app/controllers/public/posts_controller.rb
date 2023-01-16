@@ -42,9 +42,13 @@ class Public::PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  # SNS検索画面
+  def searche
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:body, images: [])
+    params.require(:post).permit(:body, :status, images: [])
   end
 end

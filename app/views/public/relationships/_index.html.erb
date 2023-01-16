@@ -8,7 +8,7 @@
             <%= customer.name %>
           <% end %>
         </td>
-        <td><%= render "public/relationships/btn", customer: customer %></td>
+        <td id="follow_change_<%= customer.id %>"><%= render "public/relationships/btn", customer: customer %></td>
       </tr>
     <% end %>
   </tbody>

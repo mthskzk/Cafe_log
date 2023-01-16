@@ -15,33 +15,12 @@
           <%= @post.body %>
         </li>
       <% end %>
-      <div>
-        <%= form_with model: [@post, @comment], url: post_post_comments_path(@post) do |f| %>
-          <div class="form-group">
-            <%= f.text_area :comment, rows: "5", placeholder: "コメントをここに", class: "form-control comment" %>
-          </div>
-          <div class="form-group">
-            <%= f.submit "送信する", class: "btn btn-secondary" %>
-          </div>
-        <% end %>
+      <!--コメント入力フォーム-->
+      <%= render "form", post1: @post, comment: @comment %>
+      <!--コメント一覧-->
+      <div id="commet_index">
+        <%= render "index", post1: @post %>
       </div>
-      <% @post.post_comments.each do |post_comment| %>
-        <li>
-          <%= link_to customer_path(post_comment.customer_id) do %>
-            <%= image_tag post_comment.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
-            <%= post_comment.customer.name %>
-          <% end %>
-        </li>
-        <li>
-          <%= post_comment.comment %>
-        </li>
-        <!--自分のコメントの時は削除ボタンが出てくる-->
-        <% if post_comment.customer == current_customer %>
-          <li>
-            <%= link_to '削除', post_post_comment_path(@post.id,post_comment.id), method: :delete, data: { confirm: '削除してよろしいですか?' } %>
-          </li>
-        <% end %>
-      <% end %>
     </div>
   </div>
 </div>

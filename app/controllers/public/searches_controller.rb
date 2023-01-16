@@ -8,9 +8,10 @@ class Public::SearchesController < ApplicationController
       # array型の配列をActive Recordに変換
       @records = Post.where(id: records.map(&:id))
     elsif @model == "post"
-
+      @records = Post.search_for(@content)
+    elsif @model == "customer"
+      @records = Customer.search_for(@content)
     end
-
   end
 
   def search_review

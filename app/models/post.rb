@@ -35,17 +35,9 @@ class Post < ApplicationRecord
     end
   end
 
-
-  def self.search_for(content, method)
-    if method == 'perfect'
-      Post.where(title: content)
-    elsif method == 'forward'
-      Book.where('title LIKE ?', content+'%')
-    elsif method == 'backward'
-      Book.where('title LIKE ?', '%'+content)
-    else
-      Book.where('title LIKE ?', '%'+content+'%')
-    end
+# 投稿のキーワード検索は部分一致のみ
+  def self.search_for(content)
+      Post.where('body LIKE ?', '%'+content+'%')
   end
 
 end

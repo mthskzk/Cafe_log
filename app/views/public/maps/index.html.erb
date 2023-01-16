@@ -18,21 +18,19 @@
     // 現在位置の特定
     navigator.geolocation.getCurrentPosition(function (position){
       // LatLngに位置座標を代入
-      LatLng = new google.maps.LatLng(gon.lat,gon.lag);
+       LatLng = new google.maps.LatLng(gon.lat,gon.lag);
 
       // mapの初期位置設定
       map = new google.maps.Map(document.getElementById('map'), {
         center: LatLng,
         zoom: gon.zoom
       });
-      // map.setCenterで地図が初期位置に移動
-      map.setCenter(LatLng);
 
       // forは繰り返し処理
       // 変数iを0と定義し、
-      // その後gonで定義したstudios分繰り返し加える処理を行う
+      // その後gonで定義したcafes分繰り返し加える処理を行う
       for (let i = 0; i < cafes.length; i++){
-        // studios[i]は変数iのユーザーを取得している
+        // cafes[i]は変数iのユーザーを取得している
         marker[i] = new google.maps.Marker({
           map: map,
           position: {

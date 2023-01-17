@@ -6,7 +6,7 @@
         <% if @customer == current_customer and @customer.name != "guestuser" %>
           <%= link_to "会員情報を編集", edit_customer_path(@customer) %>
         <% else %>
-          <div id="follow_change_<%= @customer.id %>">
+          <div>
             <%= render 'public/relationships/btn', customer: @customer %>
           </div>
         <% end %>

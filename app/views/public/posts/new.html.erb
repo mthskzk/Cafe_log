@@ -12,6 +12,10 @@
           <%= f.file_field :images, multiple: true %>
         </div>
         <div class="form-group">
+          <%= f.label :cafe_name, 'カフェ名' %>
+          <%= f.text_field :cafe_name %>
+        </div>
+        <div class="form-group">
           <%= f.label "Tag" %>
           <%= f.text_field :tag_name, class: 'form-control book_tag_name' %>
         </div>

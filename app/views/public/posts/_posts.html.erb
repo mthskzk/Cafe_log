@@ -36,6 +36,14 @@
             <%= link_to '編集する', edit_post_path(post1.id) %>
             <%= link_to '削除', post_path(post1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } %>
           <% end %>
+          <!--カフェ名を表示-->
+          <div>
+            <% if post1.cafe.present? %>
+              <%= link_to cafe_path(post1.cafe_id) do %>
+                カフェ名:<%= post1.cafe.name %>
+            <% end %>
+          <% end %>
+          </div>
         </li>
       <% else %>
         <!--投稿のステータスが非公開かつログインユーザーと違うユーザーの投稿は表示しない-->

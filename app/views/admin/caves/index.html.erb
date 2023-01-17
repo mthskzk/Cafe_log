@@ -2,32 +2,7 @@
   <div class='row'>
     <div class='col-md-2'>絞込機能</div>
     <div class='col-md-8'>
-      <table class='table table-bordered border-dark'>
-        <thead>
-          <tr class="table-secondary">
-            <th>カフェID</th>
-            <th>カフェ名</th>
-            <th>ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @cafes.each do |cafe| %>
-            <tr>
-              <td><%= cafe.id %></td>
-              <td><%= link_to cafe.name, admin_cafe_path(cafe.id) %></td>
-              <% if cafe.is_deleted == false %>
-                <td class='text-success'>有効</td>
-              <% else %>
-                <td class='text-secoundary'>閉店</td>
-              <% end %>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <!--ページネーション-->
-      <!--<div class="d-flex justify-content-center">-->
-        <!--<--%= paginate @cafes %>-->
-      <!--</div>-->
+      <%= render "index", cafes: @cafes %>
     </div>
     <div class='col-md-2'>
       <%= link_to "新しくカフェを登録", new_admin_cafe_path %>

@@ -44,4 +44,18 @@ class Cafe < ApplicationRecord
      return cafes.inject(init = []) {|result, cafe| result + cafe.posts}
   end
 
+  # 会員側で登録されていないカフェを投稿・レビューに紐づけできるようにバリデーションを切った
+  # そのため管理者側でカフェの登録・編集するときに空がないこを確認する
+  def search_blank
+    if self.name.blank? or self.prefectures.blank? or self.address_after.blank? or self.nearest_station.blank? or self.telephone_number.blank? or self.business_hours.blank? or self.regular_holiday.blank?
+      return false
+    else
+      return true
+    end
+  end
+  
+  # カフェが保存されているかどうかの確認
+  def keep_by?(customer)
+    keep_caves.exists?(customer_id: customer.id)
+  end
 end

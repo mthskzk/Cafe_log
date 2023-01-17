@@ -1,0 +1,26 @@
+<table class='table table-bordered border-dark'>
+  <thead>
+   <tr class="table-secondary">
+    <th>カフェID</th>
+      <th>カフェ名</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% cafes.each do |cafe| %>
+      <tr>
+        <td><%= cafe.id %></td>
+        <td><%= link_to cafe.name, admin_cafe_path(cafe.id) %></td>
+        <% if cafe.is_deleted == false %>
+          <td class='text-success'>有効</td>
+        <% else %>
+          <td class='text-secoundary'>閉店</td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<!--ページネーション-->
+<!--<div class="d-flex justify-content-center">-->
+  <!--<--%= paginate @cafes %>-->
+<!--</div>-->

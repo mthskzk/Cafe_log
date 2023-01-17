@@ -13,8 +13,12 @@ class Admin::CavesController < ApplicationController
 
   def create
     @cafe = Cafe.new(cafe_params)
-    if @cafe.save
-      redirect_to admin_caves_path
+    if @cafe.search_blank == true
+      if @cafe.save
+        redirect_to admin_caves_path
+      else
+        render :new
+      end
     else
       render :new
     end
@@ -28,16 +32,20 @@ class Admin::CavesController < ApplicationController
     @cafe = Cafe.find(params[:id])
     @cafe.image.attach(params[:image]) if @cafe.image.blank?
     if @cafe.update(cafe_params)
-      redirect_to admin_cafe_path(@cafe.id)
+      if @cafe.search_blank == true
+        redirect_to admin_cafe_path(@cafe.id)
+      else
+        render :edit
+      end
     else
       render :edit
     end
   end
 
-  def unsubscribe
-  end
-
-  def withdrawal
+  def destroy
+    @cafe = Cafe.find(params[:id])
+    @cafe.destroy
+    redirect_to admin_caves_path
   end
 
   private

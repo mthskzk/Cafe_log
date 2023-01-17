@@ -3,6 +3,10 @@
     <div class="col-6">
       <div class="">
         <%= @cafe.name %>
+      </div>
+      <div id="keep_<%= @cafe.id %>">
+        <%= render "public/keep_caves/btn", cafe: @cafe %>
+      </div>
         <% if @cafe.is_deleted == true %>
           閉店
         <% end %>

@@ -32,9 +32,7 @@ Rails.application.routes.draw do
     get 'searches/search_review'
     get 'searches/search_cafe'
     resources :reviews, only: [:index, :destroy]
-    get 'caves/unsubscribe'
-    patch 'caves/withdrawal'
-    resources :caves, only: [:new, :index, :create, :edit, :show, :update]
+    resources :caves
   end
 
   scope module: :public do
@@ -51,16 +49,17 @@ Rails.application.routes.draw do
       resources :favorites, only: [:index]
     end
     resources :reviews, only: [:new, :create, :destroy]
-    resources :keep_caves, only: [:index, :create, :destroy]
     get 'customers/confirm'
     resources :customers, only: [:show, :edit, :update, :destroy] do
       get 'followings' => 'relationships#followings', as: 'followings'
   	  get 'followers' => 'relationships#followers', as: 'followers'
       resource :relationships, only: [:create, :destroy]
       resources :reviews, only:[:index]
+      resources :keep_caves, only: [:index]
     end
     resources :caves, only: [:index, :show] do
       get 'reviews/cafe_index'
+      resource :keep_caves, only: [:create, :destroy]
     end
 
   end

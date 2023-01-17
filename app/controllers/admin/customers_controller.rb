@@ -24,6 +24,9 @@ class Admin::CustomersController < ApplicationController
   end
 
   def destroy
+     @customer = Customer.find(params[:id])
+    @customer.destroy
+    redirect_to admin_customers_path
   end
 
   private

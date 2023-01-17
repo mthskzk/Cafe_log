@@ -10,6 +10,9 @@
       <div class="">
         <%= link_to "カフェ情報の編集", edit_admin_cafe_path(@cafe.id), class: "btn btn-success" %>
       </div>
+      <div>
+        <%= link_to "カフェを削除" ,admin_cafe_path(@cafe.id), method: :delete, class: "btn btn-danger", data: { confirm: "削除してよろしいですか?" }  %>
+      </div>
     </div>
     <div class="col-6">
       <div class="row">

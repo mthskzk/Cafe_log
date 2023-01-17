@@ -1,0 +1,9 @@
+<% if cafe.keep_by?(current_customer) %>
+  <%= link_to cafe_keep_caves_path(cafe), method: :delete, remote: true do %>
+    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+  <% end %>
+<% else %>
+  <%= link_to cafe_keep_caves_path(cafe), method: :post, remote: true do %>
+    <i class="fas fa-heart" aria-hidden="true"></i>
+  <% end %>
+<% end %>

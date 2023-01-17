@@ -1,2 +1,54 @@
-<h1>Admin::Reviews#index</h1>
-<p>Find me in app/views/admin/reviews/index.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-5'>
+      <h5>レビュー一覧</h5>
+      <div>
+        <% if @reviews.exists? %>
+          <% @reviews.each do |review1| %>
+            <table class='table'>
+              <tbody>
+                <tr>
+                  <%= link_to customer_path(review1.customer_id) do %>
+                    <%= image_tag review1.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
+                    <%= review1.customer.name %>
+                  <% end %>
+                </tr>
+                <tr>
+                  <th>カフェ名</th>
+                  <th>
+                    <%= link_to cafe_path(review1.cafe_id) do %>
+                      <%= review1.cafe.name %>
+                    <% end %>
+                  </th>
+                </tr>
+                <tr>
+                  <th>レビュー</th>
+                  <td><%= render "rate", review: review1 %></td>
+                </tr>
+                <tr>
+                  <th>本文</th>
+                  <td><%= review1.body %></td>
+                </tr>
+                <tr>
+                  <td>投稿日</td>
+                  <td><%= l review1.created_at, format: :dayonly %></td>
+                </tr>
+                <tr>
+                  <%= link_to '削除', admin_review_path(review1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } %>
+                </tr>
+              </tbody>
+            </table>
+          <% end %>
+        <% else %>
+          <li>まだレビューがありません</li>
+        <% end %>
+      </div>
+    </div>
+    <div class='col-md-6 offset-md-1'>
+      <h2>投稿詳細</h2>
+    </div>
+  </div>
+</div>
+
+
+

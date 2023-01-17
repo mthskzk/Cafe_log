@@ -54,12 +54,12 @@ ActiveRecord::Schema.define(version: 2023_01_10_145739) do
 
   create_table "caves", force: :cascade do |t|
     t.string "name", null: false
-    t.string "prefectures"
-    t.string "address_after"
-    t.string "nearest_station"
-    t.string "telephone_number"
-    t.string "business_hours"
-    t.string "regular_holiday"
+    t.string "prefectures", null: false
+    t.string "address_after", null: false
+    t.string "nearest_station", null: false
+    t.string "telephone_number", null: false
+    t.string "business_hours", null: false
+    t.string "regular_holiday", null: false
     t.float "rate"
     t.boolean "is_deleted", default: false, null: false
     t.float "latitude"

@@ -3,6 +3,8 @@
     <div class='col-md-3'>
       <% if @model == "customer" %>
         ユーザー名検索:<%= @content %>
+      <% elsif @model == "cafe" %>
+        カフェ名検索:<%= @content %>
       <% elsif @model == "post" %>
         キーワード検索:<%= @content %>
       <% elsif @model == "tag" %>
@@ -17,6 +19,8 @@
       <% elsif @model == "post" %>
         <%= render 'public/posts/posts',posts: @records %>
       <% elsif @model == "tag" %>
+        <%= render 'public/posts/posts', posts: @records %>
+      <% elsif @model == "cafe" %>
         <%= render 'public/posts/posts', posts: @records %>
       <% end %>
     </div>

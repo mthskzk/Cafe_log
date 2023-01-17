@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+# 　ゲストログイン用のルーティング
   devise_scope :customer do
     post 'customers/guest_sign_in', to: 'customers/sessions#guest_sign_in'
   end
@@ -40,7 +41,6 @@ Rails.application.routes.draw do
     get 'homes/top'
     get 'homes/about'
     get 'searches/search_sns'
-    get 'searches/search_review'
     get 'searches/search_cafe'
     get 'favorites/like'
     resources :maps, only: [:index]
@@ -59,7 +59,9 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       resources :reviews, only:[:index]
     end
-    resources :caves, only: [:index, :show]
+    resources :caves, only: [:index, :show] do
+      get 'reviews/cafe_index'
+    end
 
   end
 

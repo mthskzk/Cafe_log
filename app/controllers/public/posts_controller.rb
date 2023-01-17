@@ -29,7 +29,7 @@ class Public::PostsController < ApplicationController
       @post.save_tags(tag_list)
       redirect_to posts_path, notice: "投稿しました"
     else
-      # render :new
+      render :new
     end
   end
 

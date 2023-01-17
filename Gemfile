@@ -72,3 +72,4 @@ gem 'kaminari','~> 1.2.1'
 # グーグルマップ用
 gem 'gon'
 gem 'geocoder'
+gem 'google_places'

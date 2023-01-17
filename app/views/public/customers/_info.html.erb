@@ -24,7 +24,7 @@
     </tr>
     <tr>
       <th>
-        <%= link_to customer_reviews_path(customer) do %>
+        <%= link_to customer_reviews_path(customer.id) do %>
           レビュー<%= customer.reviews.count %>件
         <% end %>
       </th>

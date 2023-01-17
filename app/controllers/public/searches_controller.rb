@@ -7,14 +7,14 @@ class Public::SearchesController < ApplicationController
       records = Tag.search_post_for(@content, @method)
       # array型の配列をActive Recordに変換
       @records = Post.where(id: records.map(&:id))
+    elsif @model == "cafe"
+      records = Cafe.search_post_for(@content, @method)
+      @records = Post.where(id: records.map(&:id))
     elsif @model == "post"
       @records = Post.search_for(@content)
     elsif @model == "customer"
       @records = Customer.search_for(@content)
     end
-  end
-
-  def search_review
   end
 
   def search_cafe

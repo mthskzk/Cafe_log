@@ -8,7 +8,6 @@ class Tag < ApplicationRecord
   validates :name, uniqueness: true, presence: true
 
   def self.search_post_for(content, method)
-
     if method == 'perfect'
       tags = Tag.where(name: content)
     elsif method == 'partial'

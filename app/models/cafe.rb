@@ -27,11 +27,21 @@ class Cafe < ApplicationRecord
   end
 
   def address_display
-    self.prefectures+self.address_after
+    self.prefectures.to_s+self.address_after.to_s
   end
 
   def self.search_for(area, key_word)
     Cafe.where("prefectures LIKE ? OR address_after LIKE ?", "%" + area + "%",  "%" + area + "%").where("name LIKE ?", "%" + key_word + "%")
+  end
+
+  def self.search_post_for(content, method)
+    if method == 'perfect'
+      cafes = Cafe.where(name: content)
+    elsif method == 'partial'
+      cafes = Cafe.where('name LIKE ?', '%' + content + '%')
+    end
+     # 検索結果のカフェに紐づくpost_idを返す
+     return cafes.inject(init = []) {|result, cafe| result + cafe.posts}
   end
 
 end

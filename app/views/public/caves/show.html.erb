@@ -20,12 +20,12 @@
         <tbody>
           <tr>
             <td>
-              <%= link_to admin_posts_path do %>
+              <%= link_to searches_search_sns_path(content: @cafe.name, model:"cafe", method: "perfect") do %>
                 投稿数<%= @cafe.posts.count %>件
               <% end %>
             </td>
             <td>
-              <%= link_to admin_reviews_path do %>
+              <%= link_to cafe_reviews_cafe_index_path(@cafe.id) do %>
                 レビュー<%= @cafe.reviews.count %>件
               <% end %>
             </td>

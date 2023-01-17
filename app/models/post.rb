@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
 
   belongs_to :customer
-  belongs_to :cafe, optional: true
+  belongs_to :cafe
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :post_tags, dependent: :destroy
@@ -38,6 +38,14 @@ class Post < ApplicationRecord
 # 投稿のキーワード検索は部分一致のみ
   def self.search_for(content)
       Post.where('body LIKE ?', '%'+content+'%')
+  end
+
+  def self.search_cafe_for(content, method)
+    if method == 'perfect'
+      Post.includes(:cafe).where(caves: {name: content})
+    elsif method == 'partial'
+      Post.joins(:cafe).where('cafe.name LIKE ?', '%' + content + '%')
+    end
   end
 
 end

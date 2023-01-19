@@ -1,0 +1,13 @@
+<div id="rate_average_<%= cafe.id %>"></div>
+<%= cafe.reviews.average(:rate).to_f.round(2) %>
+
+<script>
+    let option_<%= cafe.id %> = {
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        score: "<%= cafe.reviews.average(:rate).to_f.round(2) %>",
+        readOnly: true,
+      };
+    raty(rate_average_<%= cafe.id %> ,option_<%= cafe.id %>);
+</script>

@@ -1,38 +1,43 @@
-<h2>Sign up</h2>
+<div class="container py-4">
+  <mark class="h5 bg-white border border-dark py-4 px-5">新規会員登録</mark>
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "public/shared/error_messages", resource: resource %>
+        <div class="field pb-2 pt-4">
+          <%= f.label :name, class:"font-weight-bold" %><br>
+          <%= f.text_field :name, size: "40" %>
+        </div>
+        <div class="field pb-2">
+          <%= f.label :email, class:"font-weight-bold" %><br />
+          <%= f.email_field :email, size: "40", autofocus: true, autocomplete: "email" %>
+        </div>
+        <div class="field pb-2">
+          <%= f.label :password, class:"font-weight-bold" %>
+          <% if @minimum_password_length %>
+          <em class="font-weight-bold">(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, size: "40", autocomplete: "new-password" %>
+        </div>
+        <div class="field pb-4">
+          <%= f.label :password_confirmation, class:"font-weight-bold" %><br />
+          <%= f.password_field :password_confirmation, size: "40", autocomplete: "new-password" %>
+        </div>
+        <div class="actions pb-5">
+          <%= f.submit "新規登録", class: "btn btn-outline-dark" %>
+        </div>
+      <% end %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+      <div class="row">
+        <div class="col">
+          &ensp;すでに登録済みの方はこちら
+          <%= render "public/shared/links" %>
+        </div>
+        <div class="col">
+          &emsp;&nbsp;ゲストログインはこちら
+          <%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, class: "btn btn-outline-dark btn-sm btn-block mb-3 sign_in", method: :post %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
-
-<div class="row">
-  <%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
 </div>

@@ -1,6 +1,9 @@
 class Public::PostsController < ApplicationController
   def new
     @post = Post.new
+    if params[:cafe_id].present?
+      @cafe = Cafe.find(params[:cafe_id])
+    end
   end
 
   def index
@@ -17,11 +20,8 @@ class Public::PostsController < ApplicationController
     cafe_exist = Cafe.find_by(name: cafe_name)
     if cafe_exist.nil?
       cafe = Cafe.new(name: cafe_name, prefectures: "", address_after: "", nearest_station: "", telephone_number: "", business_hours: "", regular_holiday: "")
-      if cafe.save
-        @post.cafe_id = cafe.id
-      else
-        render :new
-      end
+      cafe.save
+      @post.cafe_id = cafe.id
     else
       @post.cafe_id = cafe_exist.id
     end

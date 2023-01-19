@@ -53,7 +53,7 @@ class Cafe < ApplicationRecord
       return true
     end
   end
-  
+
   # カフェが保存されているかどうかの確認
   def keep_by?(customer)
     keep_caves.exists?(customer_id: customer.id)

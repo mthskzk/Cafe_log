@@ -7,16 +7,20 @@
       <div id="keep_<%= @cafe.id %>">
         <%= render "public/keep_caves/btn", cafe: @cafe %>
       </div>
+      <div>
         <% if @cafe.is_deleted == true %>
           閉店
         <% end %>
+      </div>
+      <div>
+        <%= render "rate_average", cafe: @cafe %>
       </div>
       <div class="">
         <%= image_tag @cafe.get_image, size: '400x300' %>
       </div>
       <div class="">
-        <%= link_to "SNSで投稿", new_post_path, class: "btn btn-success", style: "margin: 10px;" %>
-        <%= link_to "レビューする", new_review_path, class: "btn btn-primary", style: "margin: 10px;" %>
+        <%= link_to "SNSで投稿", new_post_path(cafe_id: @cafe.id), class: "btn btn-success", style: "margin: 10px;" %>
+        <%= link_to "レビューする", new_review_path(cafe_id: @cafe.id), class: "btn btn-primary", style: "margin: 10px;" %>
       </div>
     </div>
     <div class="col-6">
@@ -36,24 +40,65 @@
           </tr>
         </tbody>
       </table>
-      <div class="row">
-        住所 <%= @cafe.address_display %>
-      </div>
-      <div class="row">
-        最寄り駅 <%= @cafe.nearest_station %>
-      </div>
-      <div class="row">
-        電話番号 <%= @cafe.telephone_number %>
-      </div>
-      <div class="row">
-        営業時間 <%= @cafe.business_hours %>
-      </div>
-      <div class="row">
-        定休日 <%= @cafe.regular_holiday %>
-      </div>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>住所</td>
+            <td>
+              <% if @cafe.address_display == "" %>
+                -No Data-
+              <% else %>
+                <%= @cafe.address_display %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>最寄り駅</td>
+            <td>
+              <% if @cafe.nearest_station == "" %>
+                -No Data-
+              <% else %>
+                <%= @cafe.nearest_station %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>電話番号</td>
+            <td>
+              <% if @cafe.telephone_number == "" %>
+                -No Data-
+              <% else %>
+                <%= @cafe.telephone_number %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>営業時間</td>
+            <td>
+              <% if @cafe.business_hours == "" %>
+                -No Data-
+              <% else %>
+                <%= @cafe.business_hours %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>定休日</td>
+            <td>
+              <% if @cafe.regular_holiday == "" %>
+                -No Data-
+              <% else %>
+                <%= @cafe.regular_holiday %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <!--地図の呼び出し-->
       <div>
-        <%= render "public/maps/map" %>
+        <% if @cafe.address_display != "" %>
+          <%= render "public/maps/map" %>
+        <% end %>
       </div>
     </div>
   </div>

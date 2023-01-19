@@ -1,6 +1,9 @@
 class Public::ReviewsController < ApplicationController
   def new
     @review = Review.new
+    if params[:cafe_id].present?
+      @cafe = Cafe.find(params[:cafe_id])
+    end
   end
 
   def index
@@ -15,11 +18,8 @@ class Public::ReviewsController < ApplicationController
     cafe_exist = Cafe.find_by(name: cafe_name)
     if cafe_exist.nil?
       cafe = Cafe.new(name: cafe_name, prefectures: "", address_after: "", nearest_station: "", telephone_number: "", business_hours: "", regular_holiday: "")
-      if cafe.save
-        @review.cafe_id = cafe.id
-      else
-        render :new
-      end
+      cafe.save
+      @review.cafe_id = cafe.id
     else
       @review.cafe_id = cafe_exist.id
     end
@@ -34,6 +34,20 @@ class Public::ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @review.destroy
     redirect_to customer_reviews_path(current_customer.id)
+  end
+
+  def edit
+    @review = Review.find(params[:id])
+    @cafe = Cafe.find(@review.cafe_id)
+  end
+
+  def update
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
+      redirect_to customer_reviews_path(current_customer.id)
+    else
+      render :edit
+    end
   end
 
   def cafe_index

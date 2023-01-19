@@ -7,6 +7,8 @@ class Post < ApplicationRecord
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
 
+  validates :images, presence: true
+
   # 複数枚の画像を取り込み
   has_many_attached :images
 

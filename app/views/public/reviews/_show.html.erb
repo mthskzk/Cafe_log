@@ -1,0 +1,33 @@
+<table class='table'>
+  <tbody>
+    <tr>
+      <%= link_to customer_path(review.customer_id) do %>
+        <%= image_tag review.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
+        <%= review.customer.name %>
+      <% end %>
+    </tr>
+    <tr>
+      <th>カフェ名</th>
+      <th>
+        <%= link_to cafe_path(review.cafe_id) do %>
+          <%= review.cafe.name %>
+        <% end %>
+      </th>
+    </tr>
+    <tr>
+      <th>レビュー</th>
+      <td><%= render "rate", review: review %></td>
+    </tr>
+    <tr>
+      <th>本文</th>
+      <td><%= review.body %></td>
+    </tr>
+    <tr>
+      <td>投稿日</td>
+      <td><%= l review.created_at, format: :dayonly %></td>
+    </tr>
+    <tr>
+      <%= link_to '削除', review_path(review.id), method: :delete, data: { confirm: '削除してよろしいですか?' } %>
+    </tr>
+  </tbody>
+</table>

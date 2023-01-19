@@ -21,5 +21,11 @@ class Public::SearchesController < ApplicationController
     @area = params[:area]
     @key_word = params[:key_word]
     @cafes = Cafe.search_for(@area, @key_word)
+    # sort = params[:sort]
+    # if sort == "rate" or sort == nil
+      # @cafes = Cafe.search_for(@area, @key_word).order("rate DESC")
+    # elsif sort == "review"
+      # @cafes = Cafe.search_for(@area, @key_word).joins(:reviews).order("count(cafe_id) DESC")
+    # end
   end
 end

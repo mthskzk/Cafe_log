@@ -2,7 +2,7 @@
   <% if reviews.exists? %>
     <% reviews.each do |review1| %>
       <table class='table'>
-        <tbody>
+        <tbody class="content-body">
           <tr>
             <%= link_to customer_path(review1.customer_id) do %>
               <%= image_tag review1.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
@@ -21,17 +21,36 @@
             <th>レビュー</th>
             <td><%= render "rate", review: review1 %></td>
           </tr>
-          <tr>
-            <th>本文</th>
-            <td><%= review1.body %></td>
-          </tr>
+          <% if review1.body.length > 20 %>
+            <tr class="truncated">
+              <th>本文</th>
+              <td><%= review1.body.truncate(20) %></td>
+              <td class="see-more">&lt;もっと見る&gt;</td>
+            </tr>
+            <tr class="untruncated" style="display: none">
+              <th>本文</th>
+              <td><%= review1.body %></td>
+              <td class="see-close">&lt;閉じる&gt;</td>
+            </tr>
+          <% else %>
+            <tr>
+              <th>本文</th>
+              <td><%= review1.body %></td>
+            </tr>
+          <% end %>
           <tr>
             <td>投稿日</td>
             <td><%= l review1.created_at, format: :dayonly %></td>
           </tr>
           <tr>
+            <%= link_to '詳細を見る', review_path(review1.id), remote: true %>
             <%= link_to '削除', review_path(review1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } %>
           </tr>
+          <% if review1.customer_id == current_customer.id %>
+            <tr>
+              <%= link_to '編集する', edit_review_path(review1.id) %>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     <% end %>
@@ -39,3 +58,15 @@
     <li>まだレビューがありません</li>
   <% end %>
 </div>
+
+<script>
+  $('.see-more').click(function(){
+    $(this).closest(".content-body").find(".truncated").hide();
+    $(this).closest(".content-body").find(".untruncated").show();
+  })
+
+  $('.see-close').click(function(){
+    $(this).closest(".content-body").find(".truncated").show();
+    $(this).closest(".content-body").find(".untruncated").hide();
+  })
+</script>

@@ -45,6 +45,21 @@ class Customer < ApplicationRecord
     Customer.where('name LIKE ?', '%'+content+'%')
   end
 
+  # 管理者側のユーザー検索用メソッド
+  def self.admin_search_for(name,email)
+    if name.present?
+      if email.present?
+        Customer.where('name LIKE ?', '%' + name + '%').where(email: email)
+      else
+        Customer.where('name LIKE ?', '%' + name + '%')
+      end
+    elsif email.present?
+      Customer.where(email: email)
+    else
+      Customer.all
+    end
+  end
+
   # ゲストログイン
   def self.guest
     find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |customer|

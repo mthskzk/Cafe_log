@@ -1,4 +1,4 @@
-<header>
+<header class="jumbotron jumbotron-fluid">
   <nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container">
       <div class="navbar-brand">
@@ -19,7 +19,7 @@
           <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'text-dark align-middle' %></li>
         <% elsif admin_signed_in? %>
           <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to "会員一覧", admin_customers_path, class: 'text-dark align-middle' %></li>
-          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to "投稿一覧", admin_homes_top_path, class: 'text-dark align-middle' %></li>
+          <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to "投稿一覧", admin_posts_path, class: 'text-dark align-middle' %></li>
           <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to "レビュー一覧", admin_reviews_path, class: 'text-dark align-middle' %></li>
           <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to "カフェ一覧", admin_caves_path, class: 'text-dark align-middle' %></li>
           <li button type="botton" class="m-3 btn btn-outline-secondary"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'text-dark align-middle' %></li>
@@ -33,3 +33,11 @@
     </div>
   </nav>
 </header>
+
+<style>
+  .jumbotron {
+    background-image: url("background_header.jpg");
+    background-size: cover;
+    background-position: center 60%;
+  }
+</style>

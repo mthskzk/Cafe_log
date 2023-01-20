@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     get 'searches/search_sns'
     get 'searches/search_review'
     get 'searches/search_cafe'
+    get 'searches/search_customer'
     resources :reviews, only: [:index, :destroy]
     resources :caves
   end

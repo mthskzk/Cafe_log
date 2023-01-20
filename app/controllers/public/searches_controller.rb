@@ -9,7 +9,7 @@ class Public::SearchesController < ApplicationController
       @records = Post.where(id: records.map(&:id))
     elsif @model == "cafe"
       records = Cafe.search_post_for(@content, @method)
-      @records = Post.where(id: records.map(&:id))
+      @records = Post.where(Cafe_id: records.map(&:id))
     elsif @model == "post"
       @records = Post.search_for(@content)
     elsif @model == "customer"

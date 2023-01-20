@@ -1,2 +1,14 @@
-<h1>Admin::Searches#search_sns</h1>
-<p>Find me in app/views/admin/searches/search_sns.html.erb</p>
+<div class='container px-5 px-sm-0 mt-3'>
+  <div class='row'>
+    <div class='col-md-4'>
+      <%= render "admin/searches/sns_form" %>
+    </div>
+    <div class='col-md-8'>
+      <h5>検索結果</h5>
+      <!--<div>-->
+      <!--  ユーザー名：<#%= @name %>&emsp;メールアドレス：<#%= @email %>-->
+      <!--</div>-->
+      <%= render "admin/posts/posts", posts: @records %>
+    </div>
+  </div>
+</div>

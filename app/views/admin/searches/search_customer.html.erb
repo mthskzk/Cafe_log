@@ -4,6 +4,10 @@
       <%= render "admin/searches/customer_form" %>
     </div>
     <div class='col-md-8'>
+      <h5>検索結果</h5>
+      <div>
+        ユーザー名：<%= @name %>&emsp;メールアドレス：<%= @email %>
+      </div>
       <%= render "admin/customers/index", customers: @customers %>
     </div>
   </div>

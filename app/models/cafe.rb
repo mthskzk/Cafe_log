@@ -44,6 +44,11 @@ class Cafe < ApplicationRecord
      return cafes.inject(init = []) {|result, cafe| result + cafe.posts}
   end
 
+  # 管理者側のカフェ検索
+  def self.admin_search_for(cafe_name)
+    Cafe.where('name LIKE ?', '%' + cafe_name + '%')
+  end
+
   # 会員側で登録されていないカフェを投稿・レビューに紐づけできるようにバリデーションを切った
   # そのため管理者側でカフェの登録・編集するときに空がないこを確認する
   def search_blank

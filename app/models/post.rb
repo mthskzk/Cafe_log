@@ -7,10 +7,10 @@ class Post < ApplicationRecord
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
 
-  validates :images, presence: true
+  validates :image, presence: true
 
-  # 複数枚の画像を取り込み
-  has_many_attached :images
+  # 1枚の画像を取り込み
+  has_one_attached :image
 
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)

@@ -7,8 +7,8 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    customer = Customer.find(params[:customer_id])
-    @reviews = customer.reviews
+    @customer = Customer.find(params[:customer_id])
+    @reviews = @customer.reviews
   end
 
   def create

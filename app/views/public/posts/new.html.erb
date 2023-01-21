@@ -3,34 +3,34 @@
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <%= form_with model: @post, local: true do |f| %>
-        <div class="form-group">
-          <%= f.label :image, '画像を選択', class: "btn btn-outline-dark" %>
-          <%= f.file_field :image, class: "display: none;" %>
+        <div>
+          <%= f.label :image, '画像' %><br>
+          <%= f.file_field :image %>
         </div>
-        <div class="form-group">
-          <%= f.label :body, '本文' %>
-          <%= f.text_field :body, size: "40", autocomplete: "current-password" %>
+        <div class="pt-3">
+          <%= f.label :body, 'コメント' %><br>
+          <%= f.text_area :body, size: "60x5", autocomplete: "current-password",placeholder: "カフェの感想など自由にご記入ください。" %>
         </div>
 
-        <div class="form-group">
-          <%= f.label :cafe_name, 'カフェ名' %>
+        <div class="pt-3">
+          <%= f.label :cafe_name, 'カフェ名' %><br>
           <% if @cafe.present? %>
-            <%= f.text_field :cafe_name, :value => @cafe.name %>
+            <%= f.text_field :cafe_name, size: "60", :value => @cafe.name %>
           <% else %>
-            <%= f.text_field :cafe_name %>
+            <%= f.text_field :cafe_name, size: "60", placeholder: "正式名称でご記入ください。[例：タリーズコーヒー　赤坂店]" %>
           <% end %>
         </div>
-        <div class="form-group">
-          <%= f.label "Tag" %>
-          <%= f.text_field :tag_name, class: 'form-control book_tag_name' %>
+        <div class="pt-3">
+          <%= f.label "Tag" %><br>
+          <%= f.text_field :tag_name, size: "60", class: 'post_tag_name', placeholder: ",でタグを区切ってください。[例：タリーズ,赤坂,コーヒー]" %>
         </div>
-        <div class="form-group">
-          <%= f.label "表示状態" %>
+        <div class="pt-3">
+          <%= f.label "表示状態" %><br>
           <%= f.radio_button :status, :false %><%= f.label :post_status_false, "公開" %>&emsp;
           <%= f.radio_button :status, :true %><%= f.label :post_status_true, "非公開" %>
         </div>
-        <div>
-          <%= f.submit  '投稿する' %>
+        <div class="pt-2">
+          <%= f.submit  '投稿する', class: "btn btn-outline-dark" %>
         </div>
       <% end %>
     </div>

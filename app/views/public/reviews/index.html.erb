@@ -1,12 +1,12 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-md-12 '>
-      <h5>レビュー一覧</h5>
+    <div class="col-5">
+      <h2>User Info</h2>
+      <%= render "public/customers/info", customer: @customer %>
+    </div>
+    <div class='col-7 '>
+      <h2>レビュー一覧</h2>
       <%= render 'index', reviews: @reviews %>
     </div>
-    <!--<div class='col-md-6 offset-md-1'>-->
-    <!--  <h2>投稿詳細</h2>-->
-    <!--  <div id="modal" class= "hidden"></div>-->
-    <!--</div>-->
   </div>
 </div>

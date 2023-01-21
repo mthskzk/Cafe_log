@@ -51,8 +51,8 @@ class Public::ReviewsController < ApplicationController
   end
 
   def cafe_index
-    cafe = Cafe.find(params[:cafe_id])
-    @reviews = cafe.reviews
+    @cafe = Cafe.find(params[:cafe_id])
+    @reviews = @cafe.reviews
   end
 
   private

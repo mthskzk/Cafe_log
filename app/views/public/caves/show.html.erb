@@ -1,45 +1,51 @@
 <div class="container">
   <div class="row ">
-    <div class="col-6">
-      <div class="">
-        <%= @cafe.name %>
+    <div class="col-sm-12 col-md-6">
+      <div class="row">
+        <h5 class="px-3">
+          <%= @cafe.name %>
+        </h5>
+        <div id="keep_<%= @cafe.id %>">
+          <%= render "public/keep_caves/btn", cafe: @cafe %>
+        </div>
       </div>
-      <div id="keep_<%= @cafe.id %>">
-        <%= render "public/keep_caves/btn", cafe: @cafe %>
-      </div>
-      <div>
-        <% if @cafe.is_deleted == true %>
-          閉店
-        <% end %>
-      </div>
-      <div>
+      <div class="px-3">
         <%= render "rate_average", cafe: @cafe %>
       </div>
       <div class="">
-        <%= image_tag @cafe.get_image, size: '400x300' %>
+        <%= image_tag @cafe.get_image, size: '450x300', style: "object-fit: cover;" %>
       </div>
-      <div class="">
-        <%= link_to "SNSで投稿", new_post_path(cafe_id: @cafe.id), class: "btn btn-success", style: "margin: 10px;" %>
-        <%= link_to "レビューする", new_review_path(cafe_id: @cafe.id), class: "btn btn-primary", style: "margin: 10px;" %>
-      </div>
-    </div>
-    <div class="col-6">
-      <table>
+       <table class="table table-borderless mt-3">
         <tbody>
           <tr>
-            <td>
+            <th style="width: 25%">
               <%= link_to searches_search_sns_path(content: @cafe.name, model:"cafe", method: "perfect") do %>
-                投稿数<%= @cafe.posts.count %>件
+                投稿数 <%= @cafe.posts.count %>件
               <% end %>
-            </td>
-            <td>
+            </th>
+            <th>
+              <%= link_to "SNSで投稿", new_post_path(cafe_id: @cafe.id), class: "btn btn-outline-dark" %>
+            </th>
+          </tr>
+          <tr>
+            <th style="width: 25%">
               <%= link_to cafe_reviews_cafe_index_path(@cafe.id) do %>
-                レビュー<%= @cafe.reviews.count %>件
+                レビュー <%= @cafe.reviews.count %>件
               <% end %>
-            </td>
+            </th>
+            <th>
+              <%= link_to "レビューする", new_review_path(cafe_id: @cafe.id), class: "btn btn-outline-dark" %>
+            </th>
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <div class="my-3">
+        <% if @cafe.is_deleted == true %>
+          ※このカフェは閉店しています。
+        <% end %>
+      </div>
       <table class="table">
         <tbody>
           <tr>

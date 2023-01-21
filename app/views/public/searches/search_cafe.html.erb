@@ -1,9 +1,41 @@
 <div class='container'>
   <div class='row'>
     <div class='col-md-3'>
-      <h2>このエリアから探す</h2>
-      <h4><%= @area %></h4>
-      <h5><%= link_to "地図を見る", maps_path(area: @area) %></h5>
+      <div class="mt-5">
+        <h5>
+          <%= form_with url: searches_search_cafe_path, method: :get, local: true do |f| %>
+            <%= f.text_field :area, class: "form-control-sm", size: "32",placeholder: "エリア[例:東京都、新宿]" %>
+            <%= f.text_field :key_word, class: "form-control-sm ", size: "32",placeholder: "カフェ名[例:スターバックス]" %>
+            <%= f.submit '検索', class: "btn btn-outline-dark btn-sm btn-block" %>
+          <% end %>
+        </h5>
+      </div>
+      <div class="h-auto border border-dark">
+        <h5 class="mb-3 p-2 border-bottom border-dark">
+          <i class="fas fa-search"></i>
+          このカフェ名から探す
+        </h5>
+        <div class="mb-3 p-2">
+          <% if @key_word == "" %>
+          <!--空白を入れるためのもの-->
+            &nbsp;
+          <% else %>
+            <%= @key_word %>
+          <% end %>
+        </div>
+        <h5 class="my-3 p-2 border-top border-bottom border-dark">
+          <i class="fas fa-search"></i>
+          このエリアから探す
+        </h5>
+        <p class="mb-3 p-2" style="font-size: 1.2rem;"><%= @area %></p>
+        <h5 class="px-2">
+          <%= link_to maps_path(area: @area) do %>
+            <i class="fas fa-map-marked-alt" style="color: black; font-size:1.7em;"></i>
+            <span style="font-size: 0.9rem;">このエリアを地図で見る</span>
+          <% end %>
+        </h5>
+      </div>
+
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>検索結果</h2>

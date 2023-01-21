@@ -1,8 +1,11 @@
-<div id="rate_average_<%= cafe.id %>"></div>
-<%= cafe.reviews.average(:rate).to_f.round(2) %>
+<div class="row">
+  <div id="rate_average_<%= cafe.id %>"></div>
+  <h5 class="mx-1 pt-1"><%= cafe.reviews.average(:rate).to_f.round(2) %></h5>
+</div>
 
 <script>
     let option_<%= cafe.id %> = {
+        size     : 50,
         starOn: "<%= asset_path('star-on.png') %>",
         starOff: "<%= asset_path('star-off.png') %>",
         starHalf: "<%= asset_path('star-half.png') %>",

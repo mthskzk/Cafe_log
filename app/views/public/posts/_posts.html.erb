@@ -16,6 +16,7 @@
               <div id="favorite_btn_<%= post1.id %>" class="py-2 px-2">
                 <%= render "public/favorites/btn", post1: post1 %>
               </div>
+              <!--コメント機能-->
               <div class="py-2 px-2">
               <%= link_to post_post_comments_path(post1.id) do %>
                 <i class="far fa-comment-alt" aria-hidden="true" style="color: black; font-size:1.8em;"></i>

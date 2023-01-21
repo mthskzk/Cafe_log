@@ -1,16 +1,16 @@
 <div class='container'>
   <div class='row'>
     <div class='col-md-3'>
-      <h2>User info</h2>
       <h5>
         <% if @customer == current_customer and @customer.name != "guestuser" %>
-          <%= link_to "会員情報を編集", edit_customer_path(@customer) %>
+          <%= link_to "会員情報を編集", edit_customer_path(@customer), class: "btn btn-outline-dark btn-block" %>
         <% else %>
           <div>
             <%= render 'public/relationships/btn', customer: @customer %>
           </div>
         <% end %>
       </h5>
+      <h2>User info</h2>
       <%= render 'info', customer: @customer %>
     </div>
     <div class='col-md-8 offset-md-1'>

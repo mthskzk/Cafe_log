@@ -1,16 +1,24 @@
 <div class='container'>
   <div class='row'>
     <div class='col-md-3'>
-      <% if @model == "customer" %>
-        ユーザー名検索:<%= @content %>
-      <% elsif @model == "cafe" %>
-        カフェ名検索:<%= @content %>
-      <% elsif @model == "post" %>
-        キーワード検索:<%= @content %>
-      <% elsif @model == "tag" %>
-        タグ検索:<%= @content %>
-      <% end %>
-      <h5><%= link_to "検索する", posts_search_path %></h5>
+      <h5><%= link_to "検索する", posts_search_path, class: "btn btn-outline-dark btn-block" %></h5>
+      <div class="h-auto border border-dark">
+        <h5 class="mb-3 p-2 border-bottom border-dark">
+          <i class="fas fa-search"></i>
+          <% if @model == "customer" %>
+           ユーザー名
+          <% elsif @model == "cafe" %>
+            カフェ名
+          <% elsif @model == "post" %>
+            キーワード
+          <% elsif @model == "tag" %>
+            タグ検索
+          <% end %>
+        </h5>
+        <div class="mb-3 p-2">
+          <%= @content %>
+        </div>
+      </div>
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>検索結果</h2>

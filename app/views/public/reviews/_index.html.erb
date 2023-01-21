@@ -1,72 +1,77 @@
-<div>
-  <% if reviews.exists? %>
-    <% reviews.each do |review1| %>
-      <table class='table'>
-        <tbody class="content-body">
-          <tr>
-            <%= link_to customer_path(review1.customer_id) do %>
-              <%= image_tag review1.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
-              <%= review1.customer.name %>
-            <% end %>
-          </tr>
-          <tr>
-            <th>カフェ名</th>
-            <th>
-              <%= link_to cafe_path(review1.cafe_id) do %>
-                <%= review1.cafe.name %>
+<% if reviews.exists? %>
+  <% reviews.each do |review1| %>
+    <div class="card m-3">
+      <div class="card-header bg-dark d-flex flex-row-reverse">
+        <% if review1.customer_id == current_customer.id %>
+          <div class="px-2">
+              <%= link_to review_path(review1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } do %>
+                <i class="fas fa-trash" aria-hidden="true" style="color: white; font-size:1.7em;"></i>
               <% end %>
-            </th>
-          </tr>
-          <tr>
-            <th>レビュー</th>
-            <td><%= render "rate", review: review1 %></td>
-          </tr>
+          </div>
+          <div class="px-2">
+            <%= link_to edit_review_path(review1.id) do %>
+              <i class="fas fa-edit" aria-hidden="true" style="color: white; font-size:1.7em;"></i>
+            <% end %>
+          </div>
+        <% end %>
+        &thinsp;
+      </div>
+      <div class="card-body">
+        <div class="card-title border-bottom pb-1">
+          <%= link_to customer_path(review1.customer_id) do %>
+            <%= image_tag review1.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
+            <%= review1.customer.name %>
+          <% end %>
+        </div>
+        <div class="card-subtitle py-2 border-bottom">
+          <div class="py-2">
+            <i class="fas fa-coffee" aria-hidden="true" style="color: black; font-size:1.1em;"></i>
+            <%= link_to cafe_path(review1.cafe_id) do %>
+              <%= review1.cafe.name %>
+            <% end %>
+          </div>
+          <div class="px-3">
+            <%= render "rate", review: review1 %>
+          </div>
+        </div>
+        <div class="card-text">
           <% if review1.body.length > 20 %>
-            <tr class="truncated">
-              <th>本文</th>
-              <td><%= review1.body.truncate(20) %></td>
-              <td class="see-more">&lt;もっと見る&gt;</td>
-            </tr>
-            <tr class="untruncated" style="display: none">
-              <th>本文</th>
-              <td><%= review1.body %></td>
-              <td class="see-close">&lt;閉じる&gt;</td>
-            </tr>
+            <div class="truncated">
+              <div><コメント></div>
+              <div><%= safe_join(review1.body.truncate(20).split("\n"),tag(:br)) %></div>
+              <div class="see-more btn">&lt;もっと見る&gt;</div>
+            </div>
+            <div class="untruncated" style="display: none">
+              <div><コメント></div>
+              <div><%= safe_join(review1.body.split("\n"),tag(:br)) %></div>
+              <div class="see-close btn">&lt;閉じる&gt;</div>
+            </div>
           <% else %>
-            <tr>
-              <th>本文</th>
-              <td><%= review1.body %></td>
-            </tr>
+            <div>
+              <div><コメント></div>
+              <div><%= safe_join(review1.body.split("\n"),tag(:br)) %></div>
+            </div>
           <% end %>
-          <tr>
-            <td>投稿日</td>
-            <td><%= l review1.created_at, format: :dayonly %></td>
-          </tr>
-          <tr>
-            <%= link_to '詳細を見る', review_path(review1.id), remote: true %>
-            <%= link_to '削除', review_path(review1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } %>
-          </tr>
-          <% if review1.customer_id == current_customer.id %>
-            <tr>
-              <%= link_to '編集する', edit_review_path(review1.id) %>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% end %>
-  <% else %>
-    <li>まだレビューがありません</li>
+        </div>
+      </div>
+    </div>
+    <!--<div><#%= review1.created_at, format: :dayonly %></div>-->
   <% end %>
-</div>
+<% else %>
+  <li>まだレビューがありません</li>
+<% end %>
+
+
+
 
 <script>
   $('.see-more').click(function(){
-    $(this).closest(".content-body").find(".truncated").hide();
-    $(this).closest(".content-body").find(".untruncated").show();
+    $(this).closest(".card-text").find(".truncated").hide();
+    $(this).closest(".card-text").find(".untruncated").show();
   })
 
   $('.see-close').click(function(){
-    $(this).closest(".content-body").find(".truncated").show();
-    $(this).closest(".content-body").find(".untruncated").hide();
+    $(this).closest(".card-text").find(".truncated").show();
+    $(this).closest(".card-text").find(".untruncated").hide();
   })
 </script>

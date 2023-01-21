@@ -1,7 +1,7 @@
 class Public::MapsController < ApplicationController
   def index
-    if params[:area] == ""
-      @area = "全国"
+    if params[:area] == "全国"
+      @area = params[:area]
       # areaの検索フォームが空のときは日本の中心の緯度経度を設定
       gon.lat = 37.592850
       gon.lag = 139.273600

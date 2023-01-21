@@ -1,11 +1,12 @@
 <div class='container'>
   <div class='row'>
     <div class='col-md-5'>
-      <h5>レビュー一覧</h5>
-      <%= render 'index', reviews: @reviews %>
+      <h5>Cafe Info</h5>
+      <%= render 'public/caves/info', cafe: @cafe %>
     </div>
-    <div class='col-md-6 offset-md-1'>
+    <div class='col-md-7'>
       <h2>投稿詳細</h2>
+      <%= render 'index', reviews: @reviews %>
     </div>
   </div>
 </div>

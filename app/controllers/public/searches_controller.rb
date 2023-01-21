@@ -9,7 +9,7 @@ class Public::SearchesController < ApplicationController
       @records = Post.where(id: records.map(&:id))
     elsif @model == "cafe"
       records = Cafe.search_post_for(@content, @method)
-      @records = Post.where(Cafe_id: records.map(&:id))
+      @records = Post.where(id: records.map(&:id))
     elsif @model == "post"
       @records = Post.search_for(@content)
     elsif @model == "customer"
@@ -21,6 +21,9 @@ class Public::SearchesController < ApplicationController
     @area = params[:area]
     @key_word = params[:key_word]
     @cafes = Cafe.search_for(@area, @key_word)
+    if @area == ""
+      @area = "全国"
+    end
     # sort = params[:sort]
     # if sort == "rate" or sort == nil
       # @cafes = Cafe.search_for(@area, @key_word).order("rate DESC")

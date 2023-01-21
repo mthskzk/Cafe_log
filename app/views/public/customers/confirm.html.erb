@@ -10,7 +10,7 @@
       また、他ユーザーの投稿を見ることもできなくなります。<br>
       退会する場合は、「退会する」をクリックしてください。
       </p>
-      <%= link_to "退会しない" ,customer_path(current_customer.id), class: "btn btn-primary" %><span style="margin-right: 2em;"></span>
+      <%= link_to "退会しない" ,customer_path(current_customer.id), class: "btn btn-outline-dark" %><span style="margin-right: 2em;"></span>
       <%= link_to "退会する" , customer_path(current_customer.id), method: :delete, class: "btn btn-danger" %>
     </div>
   </div>

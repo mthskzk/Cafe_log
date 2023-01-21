@@ -15,13 +15,14 @@
           <%= f.label :body, '本文' %>
           <%= f.text_area :body, size: "60x10", class: "form-control post_body",placeholder: "カフェの感想・評価をご記入ください。" %>
         </div>
-        <div class="form-group">
-          <%= f.label :rate, '評価' %>
+        <div>
           <%= f.hidden_field :rate, id: :review_star, class:'form-control' %>
+          <%= f.label :rate, '評価' %>
         </div>
         <div id="review_raty"></div>
   　     <script>
           let option = {
+            size: 36,
             starOn: "<%= asset_path('star-on.png') %>",
             starOff: "<%= asset_path('star-off.png') %>",
             starHalf: "<%= asset_path('star-half.png') %>",

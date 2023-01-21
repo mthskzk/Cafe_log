@@ -1,17 +1,19 @@
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <h2>編集</h2>
+      <h2>レビュー編集</h2>
       <%= form_with model: @review, url: review_path do |f| %>
         <div class="form-group">
-          <%= f.label :name, 'カフェ名' %>
-          <%= @cafe.name %>
+          <%= f.label :name, 'カフェ名' %>&emsp;※カフェ名は変更できません。
+          <div class="border border-secondary p-1">
+            <%= @cafe.name %>
+          </div>
         </div>
         <div class="form-group">
           <%= f.label :body, '本文' %>
-          <%= f.text_area :body, rows: 10, class: "form-control post_body" %>
+          <%= f.text_area :body, size: "60x10", class: "form-control post_body",placeholder: "カフェの感想・評価をご記入ください。" %>
         </div>
-        <div class="form-group">
+        <div>
           <%= f.label :rate, '評価' %>
           <%= f.hidden_field :rate, id: :review_star, class:'form-control' %>
         </div>
@@ -28,7 +30,7 @@
           raty(review_raty,option);
         </script>
         <div>
-          <%= f.submit  'レビューを投稿' %>
+          <%= f.submit  'レビューを投稿', class: "btn btn-outline-dark" %>
         </div>
       <% end %>
     </div>

@@ -2,7 +2,7 @@
   <% posts.each do |post1| %>
     <% if post1.status == false or (post1.status == true and post1.customer == current_customer ) %>
       <div class="card w-75 m-4 p-2">
-        <%= image_tag post1.image,class: "card-img-top", size:'250x350' %>
+        <%= image_tag post1.image,class: "card-img-top", size:'250x350', style: "object-fit: cover;" %>
         <div class="card-body">
           <div class="card-title row d-flex">
             <div class="mr-auto">
@@ -95,4 +95,3 @@
       まだ投稿されてません
   <% end %>
 </div>
-

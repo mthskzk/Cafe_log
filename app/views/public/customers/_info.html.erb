@@ -1,4 +1,4 @@
-<table class='table'>
+<table class='table table-borderless'>
   <tbody>
     <tr>
       <%= image_tag customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
@@ -18,7 +18,7 @@
       </th>
       <th>
         <% if customer == current_customer %>
-          <%= link_to "新規投稿", new_post_path %>
+          <%= link_to "新規投稿", new_post_path, class: "btn btn-outline-dark btn-sm btn-block" %>
         <% end %>
       </th>
     </tr>
@@ -30,7 +30,7 @@
       </th>
       <th>
         <% if customer == current_customer %>
-          <%= link_to "新規レビュー", new_review_path %>
+          <%= link_to "新規レビュー", new_review_path, class: "btn btn-outline-dark btn-sm btn-block" %>
         <% end %>
       </th>
     </tr>

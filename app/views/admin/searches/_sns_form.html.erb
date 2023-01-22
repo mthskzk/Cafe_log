@@ -1,0 +1,32 @@
+<%= form_with url: admin_searches_search_sns_path, method: :get, local: true do |f| %>
+  <h5>ユーザー名検索</h5>
+  <div>
+    <%= f.text_field :key_word, size: "30",placeholder: "ユーザー名" %>
+    <%= f.hidden_field :model, :value => "customer" %>
+  </div>
+  <div>
+    <%= f.submit '検索', class: "btn btn-outline-dark btn-sm" %>
+  </div>
+<% end %>
+
+<%= form_with url: admin_searches_search_sns_path, method: :get, local: true do |f| %>
+  <h5>カフェ検索</h5>
+  <div>
+    <%= f.text_field :key_word, size: "30",placeholder: "カフェ名" %>
+    <%= f.hidden_field :model, :value => "cafe" %>
+  </div>
+  <div>
+    <%= f.submit '検索', class: "btn btn-outline-dark btn-sm" %>
+  </div>
+<% end %>
+
+ <%= form_with url: admin_searches_search_sns_path, method: :get, local: true do |f| %>
+  <h5>本文検索</h5>
+  <div>
+    <%= f.text_field :key_word, size: "30",placeholder: "本文検索" %>
+    <%= f.hidden_field :model, :value => "post" %>
+  </div>
+  <div>
+    <%= f.submit '検索', class: "btn btn-outline-dark btn-sm" %>
+  </div>
+<% end %>

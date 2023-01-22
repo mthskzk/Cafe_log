@@ -1,0 +1,15 @@
+<table class='table'>
+  <tbody>
+    <% customers.each do |customer| %>
+      <tr>
+        <td>
+          <%= link_to customer_path(customer.id) do %>
+            <%= image_tag customer.get_profile_image, class: "rounded-circle", size: '50x50' %>
+            <%= customer.name %>
+          <% end %>
+        </td>
+        <td><%= render "public/relationships/btn", customer: customer %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

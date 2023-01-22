@@ -1,0 +1,26 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>いいね <%= @post.favorites.count %>件</h2>
+      <% if @post.favorites.exists? %>
+        <table class='table'>
+          <tbody>
+            <% @post.favorites.each do |favorite| %>
+              <tr>
+                <td>
+                  <%= link_to customer_path(favorite.customer.id) do %>
+                    <%= image_tag favorite.customer.get_profile_image, class: "rounded-circle", size: '50x50' %>
+                    <%= favorite.customer.name %>
+                  <% end %>
+                </td>
+                <td><%= render "public/relationships/btn", customer: favorite.customer %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>ユーザーはいません</p>
+      <% end %>
+    </div>
+  </div>
+</div>

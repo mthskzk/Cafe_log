@@ -1,0 +1,12 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>User info</h2>
+      <%= render 'public/customers/info', customer: @customer %>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <h2>検索結果</h2>
+      <%= render 'public/caves/index',cafes: @cafes %>
+    </div>
+  </div>
+</div>

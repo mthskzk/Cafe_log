@@ -1,0 +1,26 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <!--投稿の本文が登録されていないときは投稿者の情報は表示しない-->
+      <% if @post.body == "" %>
+
+      <% else %>
+        <li>
+          <%= link_to customer_path(@post.customer.id) do %>
+            <%= image_tag @post.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
+            <%= @post.customer.name %>
+          <% end %>
+        </li>
+        <li>
+          <%= @post.body %>
+        </li>
+      <% end %>
+      <!--コメント入力フォーム-->
+      <%= render "form", post1: @post, comment: @comment %>
+      <!--コメント一覧-->
+      <div id="commet_index">
+        <%= render "index", post1: @post %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>投稿編集</h2>
+      <%= form_with model: @post, url: post_path, local: true do |f| %>
+        <div>
+          <%= f.label :image, '画像' %><br>
+          <%= f.file_field :image %>
+        </div>
+        <div class="pt-3">
+          <%= f.label :body, 'コメント' %><br>
+          <%= f.text_area :body, size: "60x5", autocomplete: "current-password",placeholder: "カフェの感想など自由にご記入ください。" %>
+        </div>
+        <div class="pt-3">
+          <%= f.label :name, 'カフェ名' %>&emsp;※カフェ名は変更できません。
+          <div class="border border-secondary p-1">
+            <%= @post.cafe.name %>
+          </div>
+        </div>
+        <div class="pt-3">
+          <%= f.label "Tag" %><br>
+          <%= f.text_field :tag_name, size: "60", class: 'post_tag_name', placeholder: ",でタグを区切ってください。[例：タリーズ,赤坂,コーヒー]" %>
+        </div>
+        <div class="pt-3">
+          <%= f.label "表示状態" %><br>
+          <%= f.radio_button :status, :false %><%= f.label :post_status_false, "公開" %>&emsp;
+          <%= f.radio_button :status, :true %><%= f.label :post_status_true, "非公開" %>
+        </div>
+        <div>
+          <%= f.submit  '編集内容を保存', class: "btn btn-outline-dark" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

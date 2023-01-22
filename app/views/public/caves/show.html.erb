@@ -1,0 +1,111 @@
+<div class="container">
+  <div class="row ">
+    <div class="col-sm-12 col-md-6">
+      <div class="row">
+        <h5 class="px-3">
+          <%= @cafe.name %>
+        </h5>
+        <div id="keep_<%= @cafe.id %>">
+          <%= render "public/keep_caves/btn", cafe: @cafe %>
+        </div>
+      </div>
+      <div class="px-3">
+        <%= render "rate_average", cafe: @cafe %>
+      </div>
+      <div class="">
+        <%= image_tag @cafe.get_image, size: '450x300', style: "object-fit: cover;" %>
+      </div>
+       <table class="table table-borderless mt-3">
+        <tbody>
+          <tr>
+            <th style="width: 25%">
+              <%= link_to searches_search_sns_path(content: @cafe.name, model:"cafe", method: "perfect") do %>
+                投稿数 <%= @cafe.posts.count %>件
+              <% end %>
+            </th>
+            <th>
+              <%= link_to "SNSで投稿", new_post_path(cafe_id: @cafe.id), class: "btn btn-outline-dark" %>
+            </th>
+          </tr>
+          <tr>
+            <th style="width: 25%">
+              <%= link_to cafe_reviews_cafe_index_path(@cafe.id) do %>
+                レビュー <%= @cafe.reviews.count %>件
+              <% end %>
+            </th>
+            <th>
+              <%= link_to "レビューする", new_review_path(cafe_id: @cafe.id), class: "btn btn-outline-dark" %>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <div class="my-3">
+        <% if @cafe.is_deleted == true %>
+          ※このカフェは閉店しています。
+        <% end %>
+      </div>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>住所</td>
+            <td>
+              <% if @cafe.address_display == "" %>
+                -No Data-
+              <% else %>
+                <%= @cafe.address_display %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>最寄り駅</td>
+            <td>
+              <% if @cafe.nearest_station == "" %>
+                -No Data-
+              <% else %>
+                <%= @cafe.nearest_station %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>電話番号</td>
+            <td>
+              <% if @cafe.telephone_number == "" %>
+                -No Data-
+              <% else %>
+                <%= @cafe.telephone_number %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>営業時間</td>
+            <td>
+              <% if @cafe.business_hours == "" %>
+                -No Data-
+              <% else %>
+                <%= @cafe.business_hours %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>定休日</td>
+            <td>
+              <% if @cafe.regular_holiday == "" %>
+                -No Data-
+              <% else %>
+                <%= @cafe.regular_holiday %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!--地図の呼び出し-->
+      <div>
+        <% if @cafe.address_display != "" %>
+          <%= render "public/maps/map" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

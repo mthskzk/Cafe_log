@@ -1,0 +1,17 @@
+<div class='container'>
+  <div class='row '>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h3 class="font-weight-bold">本当に退会しますか？</h3>
+      <div>
+        <br>
+      </div>
+      <p>退会すると、会員登録情報や<br>
+      これまでの投稿・レビューはすべて削除されます。<br>
+      また、他ユーザーの投稿を見ることもできなくなります。<br>
+      退会する場合は、「退会する」をクリックしてください。
+      </p>
+      <%= link_to "退会しない" ,customer_path(current_customer.id), class: "btn btn-outline-dark" %><span style="margin-right: 2em;"></span>
+      <%= link_to "退会する" , customer_path(current_customer.id), method: :delete, class: "btn btn-danger" %>
+    </div>
+  </div>
+</div>

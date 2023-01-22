@@ -63,3 +63,13 @@ end
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
+# customerとadmin用のユーザー機能
+gem "devise"
+# enumの管理用
+gem "enum_help"
+# ページネーション用
+gem 'kaminari','~> 1.2.1'
+# グーグルマップ用
+gem 'gon'
+gem 'geocoder'
+gem 'google_places'

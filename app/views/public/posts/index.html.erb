@@ -1,0 +1,14 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h5><%= link_to "検索する", posts_search_path, class: "btn btn-outline-dark btn-block" %></h5>
+      <h2>User info</h2>
+      <%= render 'public/customers/info', customer: @customer %>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <h2>投稿</h2>
+      <%= render 'posts',posts: @posts %>
+    </div>
+  </div>
+</div>
+

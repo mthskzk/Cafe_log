@@ -1,0 +1,39 @@
+<% cafes.each do |cafe| %>
+  <%= link_to cafe_path(cafe.id) do%>
+    <div class="card w-75 m-4 p-2">
+      <%= image_tag cafe.get_image, class: "card-img-top", size: '200x200', style: "object-fit: cover;" %>
+      <div class="card-body">
+        <h5 class="card-title">
+          <%= cafe.name %>
+        </h5>
+
+        <div class="card-subtitle">
+          <div class="row">
+            <div class="px-1" style: "text-decoration: none;">
+              <% if cafe.prefectures == "" %>
+                [都道府県情報なし]
+              <% else %>
+                [<%= cafe.prefectures %>]
+              <% end %>
+            </div>
+            <div><%= cafe.nearest_station %></div>
+          </div>
+          <!--カフェの平均評価の値を表示-->
+          <div class="m-1">
+            <%= render "public/caves/rate_average", cafe: cafe %>
+          </div>
+        </div>
+        <div class="card-text">
+          <span class="px-1 bg-secondary text-white rounded">休</span>
+          <span class="mx-1">
+            <% if cafe.regular_holiday == "" %>
+              -No Date-
+            <% else %>
+              <%= cafe.regular_holiday %>
+            <% end %>
+          </span>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="d-flex flex-column">
+    <div class="mx-auto my-5"><%= render 'public/searches/form_cafe' %></div>
+    <div class="mr-auto  my-4"><h2>エリアから探す</h2></div>
+    <div class="row d-flex justify-content-between my-3">
+      <%= link_to searches_search_cafe_path(area: "東京",key_word: ""), class: "btn btn-outline-info" do %>
+        <div class="col d-flex flex-row pl-0">
+          <div><%= image_tag "Tokyo.jpg", class: "mr-3", size:"100x100" %></div>
+          <h5 class="align-self-center">&emsp;東京&emsp;&emsp;</h5>
+        </div>
+      <% end %>
+      <%= link_to searches_search_cafe_path(area: "神奈川",key_word: ""), class: "btn btn-outline-info" do %>
+        <div class="col d-flex flex-row pl-0">
+          <div><%= image_tag "Yokohama.jpg", class: "mr-3", size:"100x100" %></div>
+          <h5 class="align-self-center">&emsp;神奈川&emsp;</h5>
+        </div>
+      <% end %>
+      <%= link_to searches_search_cafe_path(area: "愛知",key_word: ""), class: "btn btn-outline-info" do %>
+        <div class="col d-flex flex-row pl-0">
+          <div><%= image_tag "Nagoya.jpg", class: "mr-3", size:"100x100" %></div>
+          <h5 class="align-self-center">&emsp;愛知&emsp;&emsp;</h5>
+        </div>
+      <% end %>
+    </div>
+    <div class="row d-flex justify-content-between my-3">
+      <%= link_to searches_search_cafe_path(area: "大阪",key_word: ""), class: "btn btn-outline-info" do %>
+        <div class="col d-flex flex-row pl-0">
+          <div><%= image_tag "Osaka.jpg", class: "mr-3", size:"100x100" %></div>
+          <h5 class="align-self-center">&emsp;大阪&emsp;&emsp;</h5>
+        </div>
+      <% end %>
+      <%= link_to searches_search_cafe_path(area: "京都",key_word: ""), class: "btn btn-outline-info" do %>
+        <div class="col d-flex flex-row pl-0">
+          <div><%= image_tag "Kyoto.jpg", class: "mr-3", size:"100x100" %></div>
+          <h5 class="align-self-center">&emsp;京都&emsp;&emsp;</h5>
+        </div>
+      <% end %>
+      <%= link_to searches_search_cafe_path(area: "福岡",key_word: ""), class: "btn btn-outline-info" do %>
+        <div class="col d-flex flex-row pl-0">
+          <div><%= image_tag "Fukuoka.jpg", class: "mr-3", size:"100x100" %></div>
+          <h5 class="align-self-center">&emsp;福岡&emsp;&emsp;</h5>
+        </div>
+      <% end %>
+    </div>
+    <div>
+      <%= render "link" %>
+    </div>
+  </div>
+</div>

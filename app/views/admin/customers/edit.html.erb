@@ -1,0 +1,34 @@
+<div class="offset-1">
+	<div class="ml-5">
+	  <div class="ml-5">
+	    <mark class="h4 bg-light ml-5 mb-5 px-4"><%= @customer.name %>さんの会員情報編集</mark>
+	  </div>
+	</div>
+</div>
+<div class='container'>
+  <div class='row mt-4 ml-4'>
+    <div class="col-md-12 ml-3">
+      <%= form_with model: @customer,url: admin_customer_path(@customer.id), local:true do |f| %>
+        <table class='table table-borderless'>
+          <tbody>
+            <tr>
+              <td style="width: 20%"><%= f.label :id, "会員ID" %></td>
+              <td><%= @customer.id %></td>
+            </tr>
+            <tr>
+              <td style="width: 20%"><%= f.label :name, "氏名" %></td>
+              <td><%= f.text_field :name, size: "30", class: "form-control name" %></td>
+            </tr>
+            <tr>
+              <td style="width: 20%"><%= f.label :email, "メールアドレス" %></td>
+              <td><%= f.email_field :email, size: "50", class: "form-control email" %></td>
+            </tr>
+            <tr>
+              <td><%= f.submit "変更を保存", class: 'btn btn-success' %></td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

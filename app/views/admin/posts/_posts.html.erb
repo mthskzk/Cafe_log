@@ -1,0 +1,30 @@
+<div class="post-partial">
+  <% if posts.exists? %>
+    <% posts.each do |post1| %>
+      <li>
+        <% post1.images.each do |image| %>
+          <%= image_tag(image, width:100) %>
+        <% end %>
+        <%= link_to admin_customer_path(post1.customer.id) do %>
+          <%= image_tag post1.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
+          <%= post1.customer.name %>
+        <% end %>
+        <%= post1.body %>
+        <!--コメントがあるとき件数を表示-->
+        <% if post1.post_comments.exists? %>
+          <%= link_to admin_post_post_comments_path(post1.id) do %>
+            コメント<%= post1.post_comments.count %>件
+          <% end %>
+        <% end %>
+        <!--いいね機能-->
+        <%= render "admin/favorites/btn", post1: post1 %>
+        <!--投稿削除ができる-->
+        <%= link_to '削除', admin_post_path(post1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } %>
+      </li>
+    <% end %>
+  <% else %>
+    <li>
+      まだ投稿されてません
+    </li>
+  <% end %>
+</div>

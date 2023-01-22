@@ -1,0 +1,6 @@
+<%= form_with url: searches_search_sns_path, method: :get, local: true do |f| %>
+  <%= f.text_field :content %>
+  <%= f.select :model, options_for_select({ "ユーザー" => "customer", "投稿" => "post", "タグ" => "tag", "カフェ" => "cafe" }) %>
+  <%= f.hidden_field :method, :value => 'partial' %>
+  <%= f.submit '検索', class: "btn btn-primary" %>
+<% end %>

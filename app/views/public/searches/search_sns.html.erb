@@ -1,0 +1,36 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h5><%= link_to "検索する", posts_search_path, class: "btn btn-outline-dark btn-block" %></h5>
+      <div class="h-auto border border-dark">
+        <h5 class="mb-3 p-2 border-bottom border-dark">
+          <i class="fas fa-search"></i>
+          <% if @model == "customer" %>
+           ユーザー名
+          <% elsif @model == "cafe" %>
+            カフェ名
+          <% elsif @model == "post" %>
+            キーワード
+          <% elsif @model == "tag" %>
+            タグ検索
+          <% end %>
+        </h5>
+        <div class="mb-3 p-2">
+          <%= @content %>
+        </div>
+      </div>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <h2>検索結果</h2>
+      <% if @model == "customer" %>
+        <%= render 'public/relationships/index',customers: @records %>
+      <% elsif @model == "post" %>
+        <%= render 'public/posts/posts',posts: @records %>
+      <% elsif @model == "tag" %>
+        <%= render 'public/posts/posts', posts: @records %>
+      <% elsif @model == "cafe" %>
+        <%= render 'public/posts/posts', posts: @records %>
+      <% end %>
+    </div>
+  </div>
+</div>

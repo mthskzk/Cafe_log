@@ -57,15 +57,15 @@
               <% end %>
             </div>
           </div>
-          <p class="card-text">
+          <div class="card-text">
             <% if post1.body.present? %>
-              <p class="truncated">
-                <button class="see-more badge badge-pill badge-dark" id="see-more-<%= post1.id %>">続きを読む</button>
-              </p>
-              <p class="untruncated" style="display: none">
+             <div class="truncated">
+                <div class="see-more badge badge-pill badge-dark" id="see-more-<%= post1.id %>">続きを読む</div>
+              </div>
+              <div class="untruncated" style="display: none">
                 <%= post1.body %>
-                <button class="badge badge-pill badge-dark" id="see-close-<%= post1.id %>">閉じる</button>
-              </p>
+                <div class="badge badge-pill badge-dark" id="see-close-<%= post1.id %>">閉じる</div>
+              </div>
             <% end %>
             <div>
                <!--投稿に紐づくタグを表示-->

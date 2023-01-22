@@ -2,7 +2,7 @@
   <div class='row'>
     <div class='col-md-3'>
       <div class="mt-5">
-        <h5>
+        <h5 class="mb-5">
           <%= form_with url: searches_search_cafe_path, method: :get, local: true do |f| %>
             <%= f.text_field :area, class: "form-control-sm", size: "32",placeholder: "エリア[例:東京都、新宿]" %>
             <%= f.text_field :key_word, class: "form-control-sm ", size: "32",placeholder: "カフェ名[例:スターバックス]" %>

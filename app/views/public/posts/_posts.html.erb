@@ -1,98 +1,95 @@
+
 <% if posts.exists? %>
   <% posts.each do |post1| %>
-    <% if post1.status == false or (post1.status == true and post1.customer == current_customer ) %>
-      <div class="card w-75 m-4 p-2">
-        <%= image_tag post1.image,class: "card-img-top", size:'250x350', style: "object-fit: cover;" %>
-        <div class="card-body">
-          <div class="card-title row d-flex">
-            <div class="mr-auto">
-              <%= link_to customer_path(post1.customer.id) do %>
-                <%= image_tag post1.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
-                <%= post1.customer.name %>
-              <% end %>
+    <div class="card w-75 m-4 p-2">
+      <%= image_tag post1.image,class: "card-img-top", size:'250x350', style: "object-fit: cover;" %>
+      <div class="card-body">
+        <div class="card-title row d-flex">
+          <div class="mr-auto">
+            <%= link_to customer_path(post1.customer.id) do %>
+              <%= image_tag post1.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
+              <%= post1.customer.name %>
+            <% end %>
+          </div>
+          <div class="row">
+            <!--いいね機能-->
+            <div id="favorite_btn_<%= post1.id %>" class="py-2 px-2">
+              <%= render "public/favorites/btn", post1: post1 %>
             </div>
-            <div class="row">
-              <!--いいね機能-->
-              <div id="favorite_btn_<%= post1.id %>" class="py-2 px-2">
-                <%= render "public/favorites/btn", post1: post1 %>
-              </div>
-              <!--コメント機能-->
-              <div class="py-2 px-2">
+            <!--コメント機能-->
+            <div class="py-2 px-2">
               <%= link_to post_post_comments_path(post1.id) do %>
                 <i class="far fa-comment-alt" aria-hidden="true" style="color: black; font-size:1.8em;"></i>
               <% end %>
-              </div>
-              <!--自分の投稿の時は編集・削除ができる-->
-              <div class="py-2 px-2 mr-2">
-                <% if post1.customer == current_customer %>
-                  <%= link_to edit_post_path(post1.id) do %>
-                    <i class="fas fa-edit" aria-hidden="true" style="color: black; font-size:1.7em;"></i>
-                  <% end %>
-                  <%= link_to post_path(post1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } do %>
-                    <i class="fas fa-trash" aria-hidden="true" style="color: black; font-size:1.7em;"></i>
-                  <% end %>
-                <% end %>
-              </div>
             </div>
-          </div>
-          <div class="card-subtitle">
-            <div class="row px-1">
-              <!--いいねカウント-->
-              <div id="favorite_counter_<%= post1.id %>">
-                <%= render "public/favorites/counter", post1: post1 %>
-              </div>
-              <!--コメントがあるとき件数を表示-->
-              <div>
-                <% if post1.post_comments.exists? %>
-                  <%= link_to post_post_comments_path(post1.id) do %>
-                    「コメント<%= post1.post_comments.count %>件」
-                  <% end %>
+            <!--自分の投稿の時は編集・削除ができる-->
+            <div class="py-2 px-2 mr-2">
+              <% if post1.customer == current_customer %>
+                <%= link_to edit_post_path(post1.id) do %>
+                  <i class="fas fa-edit" aria-hidden="true" style="color: black; font-size:1.7em;"></i>
                 <% end %>
-              </div>
-            </div>
-            <div>
-              <i class="fas fa-coffee" aria-hidden="true" style="color: black; font-size:1.1em;"></i>
-              <%= link_to cafe_path(post1.cafe_id) do %>
-                <%= post1.cafe.name %>
+                <%= link_to post_path(post1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } do %>
+                  <i class="fas fa-trash" aria-hidden="true" style="color: black; font-size:1.7em;"></i>
+                <% end %>
               <% end %>
             </div>
           </div>
-          <div class="card-text">
-            <% if post1.body.present? %>
-             <div class="truncated">
-                <div class="see-more badge badge-pill badge-dark" id="see-more-<%= post1.id %>">続きを読む</div>
-              </div>
-              <div class="untruncated" style="display: none">
-                <%= post1.body %>
-                <div class="badge badge-pill badge-dark" id="see-close-<%= post1.id %>">閉じる</div>
-              </div>
+        </div>
+        <div class="card-subtitle">
+          <div class="row px-1">
+            <!--いいねカウント-->
+            <div id="favorite_counter_<%= post1.id %>">
+              <%= render "public/favorites/counter", post1: post1 %>
+            </div>
+            <!--コメントがあるとき件数を表示-->
+            <div>
+              <% if post1.post_comments.exists? %>
+                <%= link_to post_post_comments_path(post1.id) do %>
+                  「コメント<%= post1.post_comments.count %>件」
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+          <div>
+            <i class="fas fa-coffee" aria-hidden="true" style="color: black; font-size:1.1em;"></i>
+            <%= link_to cafe_path(post1.cafe_id) do %>
+              <%= post1.cafe.name %>
             <% end %>
-            <div>
-               <!--投稿に紐づくタグを表示-->
-              <% post1.tags.each do |tag| %>
-                <i class="fas fa-tag"></i>
-                <%= link_to tag.name,  searches_search_sns_path(content: tag.name, model:"tag", method: "perfect") %>&thinsp;
-              <% end %>
+          </div>
+        </div>
+        <div class="card-text">
+          <% if post1.body.present? or post1.tags.present? %>
+            <div class="truncated">
+              <div class="see-more btn badge badge-pill badge-dark" >続きを読む</div>
             </div>
-          </p>
+            <div class="untruncated" style="display: none">
+              <p><%= post1.body %></p>
+              <!--投稿に紐づくタグを表示-->
+              <p>
+                <% post1.tags.each do |tag| %>
+                  <i class="fas fa-tag"></i>
+                  <%= link_to tag.name,  searches_search_sns_path(content: tag.name, model:"tag", method: "perfect") %>&thinsp;
+                <% end %>
+              </p>
+              <div class="see-close badge btn badge-pill badge-dark">閉じる</div>
+            </div>
+          <% end %>
         </div>
       </div>
-      <% else %>
-        <!--投稿のステータスが非公開かつログインユーザーと違うユーザーの投稿は表示しない-->
-      <% end %>
-      <script>
-        $('#see-more-<%= post1.id %>').click(function(){
-          $(this).closest(".card-text").find(".truncated").hide();
-          $(this).closest(".card-text").find(".untruncated").show();
-        })
-
-        $('#see-close-<%= post1.id %>').click(function(){
-          $(this).closest(".card-text").find(".truncated").show();
-          $(this).closest(".card-text").find(".untruncated").hide();
-        })
-      </script>
-    <% end %>
-  <% else %>
-      まだ投稿されてません
+    </div>
   <% end %>
-</div>
+<% else %>
+   まだ投稿されてません
+<% end %>
+
+<script>
+  $('.see-more').click(function(){
+    $(this).closest(".card-text").find(".truncated").hide();
+    $(this).closest(".card-text").find(".untruncated").show();
+  })
+
+  $('.see-close').click(function(){
+    $(this).closest(".card-text").find(".truncated").show();
+    $(this).closest(".card-text").find(".untruncated").hide();
+  })
+</script>

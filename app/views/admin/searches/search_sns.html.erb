@@ -1,13 +1,29 @@
 <div class='container px-5 px-sm-0 mt-3'>
   <div class='row'>
-    <div class='col-md-4'>
+    <div class='col-4'>
+      <% if @key_word != "" %>
+        <div class="h-auto border border-dark mb-5">
+          <h5 class="mb-3 p-2 border-bottom border-dark">
+            <i class="fas fa-search"></i>
+            <% if @model == "customer" %>
+             ユーザー名検索
+            <% elsif @model == "cafe" %>
+              カフェ名検索
+            <% elsif @model == "post" %>
+              本文検索
+            <% elsif @model == "tag" %>
+              タグ検索
+            <% end %>
+          </h5>
+          <div class="mb-3 px-2">
+            <%= @key_word %>
+          </div>
+        </div>
+      <% end %>
       <%= render "admin/searches/sns_form" %>
     </div>
-    <div class='col-md-8'>
+    <div class='col-md-8 mx-auto'>
       <h5>検索結果</h5>
-      <!--<div>-->
-      <!--  ユーザー名：<#%= @name %>&emsp;メールアドレス：<#%= @email %>-->
-      <!--</div>-->
       <%= render "admin/posts/posts", posts: @records %>
     </div>
   </div>

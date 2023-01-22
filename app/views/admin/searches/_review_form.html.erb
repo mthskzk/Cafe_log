@@ -1,4 +1,4 @@
-<%= form_with url: admin_searches_search_sns_path, method: :get, local: true do |f| %>
+<%= form_with url: admin_searches_search_review_path, method: :get, local: true do |f| %>
   <h5>ユーザー名検索</h5>
   <div class="pb-1">
     <%= f.text_field :key_word, size: "30",placeholder: "ユーザー名入力" %>
@@ -9,7 +9,7 @@
   </div>
 <% end %>
 
-<%= form_with url: admin_searches_search_sns_path, method: :get, local: true do |f| %>
+<%= form_with url: admin_searches_search_review_path, method: :get, local: true do |f| %>
   <h5 class="pt-3">カフェ検索</h5>
   <div class="pb-1">
     <%= f.text_field :key_word, size: "30",placeholder: "カフェ名入力" %>
@@ -20,23 +20,11 @@
   </div>
 <% end %>
 
-<%= form_with url: admin_searches_search_sns_path, method: :get, local: true do |f| %>
-  <h5 class="pt-3">タグ検索</h5>
-  <div class="pb-1">
-    <%= f.text_field :key_word, size: "30",placeholder: "タグ名入力" %>
-    <%= f.hidden_field :model, :value => "tag" %>
-    <%= f.hidden_field :method, :value => "partial" %>
-  </div>
-  <div>
-    <%= f.submit '検索', class: "btn btn-outline-dark btn-sm" %>
-  </div>
-<% end %>
-
-<%= form_with url: admin_searches_search_sns_path, method: :get, local: true do |f| %>
+ <%= form_with url: admin_searches_search_review_path, method: :get, local: true do |f| %>
   <h5 class="pt-3">本文検索</h5>
   <div class="pb-1">
     <%= f.text_field :key_word, size: "30",placeholder: "調べたいワード入力" %>
-    <%= f.hidden_field :model, :value => "post" %>
+    <%= f.hidden_field :model, :value => "review" %>
   </div>
   <div>
     <%= f.submit '検索', class: "btn btn-outline-dark btn-sm" %>

@@ -2,19 +2,11 @@
   <% reviews.each do |review1| %>
     <div class="card m-3">
       <div class="card-header bg-dark d-flex flex-row-reverse">
-        <% if review1.customer_id == current_customer.id %>
-          <div class="px-2">
-              <%= link_to review_path(review1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } do %>
-                <i class="fas fa-trash" aria-hidden="true" style="color: white; font-size:1.7em;"></i>
-              <% end %>
-          </div>
-          <div class="px-2">
-            <%= link_to edit_review_path(review1.id) do %>
-              <i class="fas fa-edit" aria-hidden="true" style="color: white; font-size:1.7em;"></i>
-            <% end %>
-          </div>
-        <% end %>
-        &thinsp;
+        <div class="px-2">
+          <%= link_to admin_review_path(review1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } do %>
+            <i class="fas fa-trash" aria-hidden="true" style="color: white; font-size:1.7em;"></i>
+          <% end %>
+        </div>
       </div>
       <div class="card-body">
         <div class="card-title border-bottom pb-1">
@@ -31,7 +23,7 @@
             <% end %>
           </div>
           <div class="px-3">
-            <%= render "rate", review: review1 %>
+            <%= render "admin/reviews/rate", review: review1 %>
           </div>
         </div>
         <div class="card-text">
@@ -58,11 +50,8 @@
     <!--<div><#%= review1.created_at, format: :dayonly %></div>-->
   <% end %>
 <% else %>
-  <li>レビューがありません</li>
+  <li>まだレビューがありません</li>
 <% end %>
-
-
-
 
 <script>
   $('.see-more').click(function(){
@@ -74,4 +63,4 @@
     $(this).closest(".card-text").find(".truncated").show();
     $(this).closest(".card-text").find(".untruncated").hide();
   })
-</script>cript>pt>ipt>
+</script>

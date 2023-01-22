@@ -1,0 +1,16 @@
+<div class="row">
+  <div id="rate_<%= review.id %>"></div>
+  <h5 class="mx-1 pt-1"><%= review.rate %> </h5>
+</div>
+
+
+<script>
+    let option_<%= review.id %> = {
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        score: "<%= review.rate %>",
+        readOnly: true,
+      };
+    raty(rate_<%= review.id %> ,option_<%= review.id %>);
+</script>

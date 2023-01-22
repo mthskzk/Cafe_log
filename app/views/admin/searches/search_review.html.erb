@@ -1,2 +1,29 @@
-<h1>Admin::Searches#search_review</h1>
-<p>Find me in app/views/admin/searches/search_review.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class="col-3">
+      <% if @key_word != "" %>
+        <div class="h-auto border border-dark mb-5">
+          <h5 class="mb-3 p-2 border-bottom border-dark">
+            <i class="fas fa-search"></i>
+            <% if @model == "customer" %>
+             ユーザー名検索
+            <% elsif @model == "cafe" %>
+              カフェ名検索
+            <% elsif @model == "review" %>
+              本文検索
+            <% end %>
+          </h5>
+          <div class="mb-3 px-2">
+            <%= @key_word %>
+          </div>
+        </div>
+      <% end %>
+      <%= render "admin/searches/review_form" %>
+    </div>
+    <div class='col-7 mx-auto'>
+      <h5>検索結果</h5>
+      <div>
+        <%= render "admin/reviews/index", reviews: @records %>
+      </div>
+  </div>
+</div>

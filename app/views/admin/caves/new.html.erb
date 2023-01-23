@@ -1,4 +1,5 @@
 <div class="container">
+  <mark class="h5 bg-white border border-dark py-4 px-5">カフェの新規登録</mark>
   <div class="row ">
     <div class="col-12">
       <%= render "layouts/error", obj: @cafe %>
@@ -8,8 +9,8 @@
           <%= f.file_field :image, accept:"image/*" %>
         </div>
         <div class="form-group row mt-3 " >
-          <%= f.label :カフェ名 ,class:"col-md-2 text-center"  %>
-          <%= f.text_field :name ,class:"form-control col-md-5" %>
+          <%= f.label :カフェ名 ,class:"col-md-2 text-center" %>
+          <%= f.text_field :name ,class:"form-control col-md-5", placeholder: "正式名称で入力してください。" %>
         </div>
         <div class="form-group row mt-3 ">
           <%= f.label :都道府県 ,class:"col-md-2 text-center"  %>
@@ -25,26 +26,26 @@
         </div>
         <div class="form-group row mt-3 " >
           <%= f.label :それ以降の住所 ,class:"col-md-2 text-center"  %>
-          <%= f.text_field :address_after ,class:"form-control col-md-5" %>
+          <%= f.text_field :address_after ,class:"form-control col-md-5", placeholder: "例：新宿区新宿1-1-1" %>
         </div>
         <div class="form-group row mt-3 " >
           <%= f.label :最寄り駅 ,class:"col-md-2 text-center"  %>
-          <%= f.text_field :nearest_station ,class:"form-control col-md-5" %>
+          <%= f.text_field :nearest_station ,class:"form-control col-md-5", placeholder: "例：JR新宿駅から徒歩5分" %>
         </div>
         <div class="form-group row mt-3 " >
           <%= f.label :電話番号 ,class:"col-md-2 text-center"  %>
-          <%= f.text_field :telephone_number ,class:"form-control col-md-5" %>
+          <%= f.text_field :telephone_number ,class:"form-control col-md-5", placeholder: "例：000-000-0000" %>
         </div>
         <div class="form-group row mt-3 " >
           <%= f.label :営業時間 ,class:"col-md-2 text-center"  %>
-          <%= f.text_field :business_hours ,class:"form-control col-md-5" %>
+          <%= f.text_field :business_hours ,class:"form-control col-md-5", placeholder: "例：月～金：9：00～19：00、土日祝：9：00～20：00" %>
         </div>
         <div class="form-group row mt-3 " >
           <%= f.label :定休日 ,class:"col-md-2 text-center"  %>
-          <%= f.text_field :regular_holiday ,class:"form-control col-md-5" %>
+          <%= f.text_field :regular_holiday ,class:"form-control col-md-5", placeholder: "例：水曜日、大晦日～1月3日" %>
         </div>
-        <div class="form-group text-center col-7">
-          <%= f.submit "新規登録" ,class:"btn btn-success btn-lg "  %>
+        <div class="form-group">
+          <%= f.submit "新規登録" ,class:"btn btn-outline-dark btn-block w-50 "  %>
         </div>
       <% end %>
     </div>

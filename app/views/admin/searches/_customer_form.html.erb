@@ -1,11 +1,13 @@
 <%= form_with url: admin_searches_search_customer_path, method: :get, local: true do |f| %>
-  <div>
+  <h5>ユーザー名検索</h5>
+  <div class="pb-1">
     <%= f.text_field :name, size: "30",placeholder: "ユーザー名" %>
   </div>
-  <div>
+  <h5 class="pt-3">メールアドレス検索</h5>
+  <div class="pb-1">
     <%= f.text_field :email, size: "30",placeholder: "メールアドレス" %>
   </div>
-  <div>
+  <div class="pb-1">
     <%= f.submit '検索', class: "btn btn-outline-dark btn-sm" %>
   </div>
 <% end %>

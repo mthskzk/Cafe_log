@@ -1,43 +1,105 @@
 <div class="container">
   <div class="row ">
-    <div class="col-6">
-      <div class="">
+    <div class="col-sm-12 col-md-6">
+      <h5 class="px-3">
         <%= @cafe.name %>
+      </h5>
+      <div class="px-3">
+        <%= render "rate_average", cafe: @cafe %>
       </div>
       <div class="">
-        <%= image_tag @cafe.get_image, size: '120x100' %>
+        <%= image_tag @cafe.get_image, size: '450x300', style: "object-fit: cover;" %>
       </div>
-      <div class="">
-        <%= link_to "カフェ情報の編集", edit_admin_cafe_path(@cafe.id), class: "btn btn-success" %>
-      </div>
-      <div>
-        <%= link_to "カフェを削除" ,admin_cafe_path(@cafe.id), method: :delete, class: "btn btn-danger", data: { confirm: "削除してよろしいですか?" }  %>
-      </div>
+       <table class="table table-borderless mt-3">
+        <tbody>
+          <tr>
+            <th style="width: 25%">
+              <%= link_to admin_searches_search_sns_path(key_word: @cafe.name, model: "cafe", method: "perfect") do %>
+                投稿数 <%= @cafe.posts.count %>件
+              <% end %>
+            </th>
+            <th style="width: 25%">
+              <%= link_to admin_searches_search_review_path(key_word: @cafe.name, model: "cafe", method: "perfect") do %>
+                レビュー <%= @cafe.reviews.count %>件
+              <% end %>
+            </th>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="col-6">
-      <div class="row">
-        住所 <%= @cafe.address_display %>
-      </div>
-      <div class="row">
-        最寄り駅 <%= @cafe.nearest_station %>
-      </div>
-      <div class="row">
-        電話番号 <%= @cafe.telephone_number %>
-      </div>
-      <div class="row">
-        営業時間 <%= @cafe.business_hours %>
-      </div>
-      <div class="row">
-        定休日 <%= @cafe.regular_holiday %>
-      </div>
-      <div class="row">
-        ステータス
-        <% if @cafe.is_deleted == false %>
-          有効
-        <% else %>
-          閉店
-        <% end %>
-      </div>
+    <div class="col-sm-12 col-md-6">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>住所</td>
+            <td>
+              <% if @cafe.address_display == "" %>
+                -No Data-
+              <% else %>
+                <%= @cafe.address_display %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>最寄り駅</td>
+            <td>
+              <% if @cafe.nearest_station == "" %>
+                -No Data-
+              <% else %>
+                <%= @cafe.nearest_station %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>電話番号</td>
+            <td>
+              <% if @cafe.telephone_number == "" %>
+                -No Data-
+              <% else %>
+                <%= @cafe.telephone_number %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>営業時間</td>
+            <td>
+              <% if @cafe.business_hours == "" %>
+                -No Data-
+              <% else %>
+                <%= @cafe.business_hours %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>定休日</td>
+            <td>
+              <% if @cafe.regular_holiday == "" %>
+                -No Data-
+              <% else %>
+                <%= @cafe.regular_holiday %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>ステータス</td>
+            <td>
+              <% if @cafe.is_deleted == false %>
+                有効
+              <% else %>
+                閉店
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= link_to "カフェ情報の編集", edit_admin_cafe_path(@cafe.id), class: "btn btn-outline-success" %>
+            </td>
+            <td>
+              <%= link_to "カフェを削除" ,admin_cafe_path(@cafe.id), method: :delete, class: "btn btn-outline-danger", data: { confirm: "削除してよろしいですか?" }  %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

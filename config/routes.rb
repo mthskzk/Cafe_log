@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :edit, :show, :update, :destroy] do
       get 'relationships/followings'
       get 'relationships/followers'
+      get 'posts/customer_index'
+      get 'reviews/customer_index'
     end
     resources :posts, only: [:index, :destroy] do
       resources :post_comments, only: [:index, :destroy]

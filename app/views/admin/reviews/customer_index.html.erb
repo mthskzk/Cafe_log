@@ -1,10 +1,7 @@
 <div class='container'>
   <div class='row'>
-    <div class="col-4">
-      <%= render "admin/searches/review_form" %>
-    </div>
     <div class='col-7 mx-auto'>
-      <h5>レビュー一覧</h5>
+      <h5><%= @customer.name%>さんのレビュー一覧</h5>
       <div>
         <%= render "admin/reviews/index", reviews: @reviews %>
       </div>

@@ -6,7 +6,7 @@
         <div class="card-body">
           <div class="card-title row d-flex">
             <div class="mr-auto">
-              <%= link_to customer_path(post1.customer.id) do %>
+              <%= link_to admin_customer_path(post1.customer.id) do %>
                 <%= image_tag post1.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
                 <%= post1.customer.name %>
               <% end %>

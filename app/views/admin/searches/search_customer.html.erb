@@ -1,13 +1,36 @@
 <div class='container px-5 px-sm-0 mt-3'>
   <div class='row'>
-    <div class='col-md-4'>
+    <div class='col-4'>
+      <div class="h-auto border border-dark mb-5 w-75">
+        <h5 class="mb-3 p-2 border-bottom border-dark">
+          <i class="fas fa-search"></i>
+          検索ユーザー名
+        </h5>
+        <div class="mb-3 p-2 border-bottom border-dark ">
+          <% if @name == "" %>
+          <!--空白を入れるためのもの-->
+            &nbsp;
+          <% else %>
+            <%= @name %>
+          <% end %>
+        </div>
+        <h5 class="mb-3 px-2 pb-2 border-bottom border-dark">
+          <i class="fas fa-search"></i>
+          検索メールアドレス
+        </h5>
+        <div class="mb-3 px-2">
+          <% if @email == "" %>
+          <!--空白を入れるためのもの-->
+            &nbsp;
+          <% else %>
+            <%= @email %>
+          <% end %>
+        </div>
+      </div>
       <%= render "admin/searches/customer_form" %>
     </div>
-    <div class='col-md-8'>
+    <div class='col-8'>
       <h5>検索結果</h5>
-      <div>
-        ユーザー名：<%= @name %>&emsp;メールアドレス：<%= @email %>
-      </div>
       <%= render "admin/customers/index", customers: @customers %>
     </div>
   </div>

@@ -10,4 +10,10 @@ class Admin::PostsController < ApplicationController
     @post.destroy
     redirect_to admin_homes_top_path
   end
+
+  def customer_index
+    @customer = Customer.find(params[:customer_id])
+    @posts = Post.where(customer_id: @customer.id)
+  end
+
 end

@@ -45,8 +45,12 @@ class Cafe < ApplicationRecord
   end
 
   # 管理者側のカフェ検索
-  def self.admin_search_for(cafe_name)
-    Cafe.where('name LIKE ?', '%' + cafe_name + '%')
+  def self.admin_search_for(cafe_name, method)
+    if method == 'perfect'
+      Cafe.where(name: cafe_name)
+    elsif method == 'partial'
+      Cafe.where('name LIKE ?', '%' + cafe_name + '%')
+    end
   end
 
   # 会員側で登録されていないカフェを投稿・レビューに紐づけできるようにバリデーションを切った

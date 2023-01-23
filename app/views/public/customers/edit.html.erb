@@ -2,25 +2,25 @@
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
     <%= render "layouts/error", obj: @customer %>
-    <h2>会員情報編集</h2>
+    <h2 class="pb-2">会員情報編集</h2>
     <%= form_with model: @customer, url: customer_path, local:true do |f| %>
       <!--エラーメッセージ-->
       <!--<--%= render 'layouts/errors', obj: @user %>-->
-      <div class="form-group">
-        <%= f.label :name %>
+      <div class="form-group pb-2">
+        <%= f.label :name, "ユーザー名" %>
         <%= f.text_field :name, class: "form-control name" %>
       </div>
-     <div class="form-group">
-        <%= f.label :image %>
+      <div class="form-group pb-2">
+        <%= f.label :image, "プロフィール写真" %>
         <%= f.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %>
       </div>
-      <div class="form-group">
-        <%= f.label :email%>
+      <div class="form-group pb-2">
+        <%= f.label :email, "メールアドレス"%>
         <%= f.email_field :email, class: "form-control email" %>
       </div>
-      <div class="form-group">
-        <%= f.submit "編集内容を保存", class: "btn btn-outline-dark", style: "margin: 10px;" %>
-        <%= link_to "退会する" , customers_confirm_path(@customer), class: "btn btn-danger", style: "margin: 10px;" %>
+      <div class="form-group ">
+        <%= f.submit "編集内容を保存", class: "btn btn-outline-dark px-3", style: "margin: 10px;" %>
+        <%= link_to "退会する" , customers_confirm_path(id: @customer.id), class: "btn btn-outline-danger px-5", style: "margin: 10px;" %>
       </div>
     <% end %>
   </div>

@@ -1,0 +1,10 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-8 mx-auto">
+      <h5><%= @customer.name%>さんの投稿一覧</h5>
+      <div>
+        <%= render 'admin/posts/posts', posts: @posts %>
+      </div>
+    </div>
+  </div>
+</div>

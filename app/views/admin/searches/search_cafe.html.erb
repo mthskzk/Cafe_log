@@ -1,8 +1,19 @@
 <div class='container px-5 px-sm-0 mt-3'>
   <div class='row'>
     <div class='col-4'>
-      <%= link_to "新しくカフェを登録", new_admin_cafe_path %>
-       <%= render "admin/searches/cafe_form" %>
+      <%= link_to "新しくカフェを登録", new_admin_cafe_path, class: "btn btn-outline-dark btn-block w-75 mb-5" %>
+      <% if @cafe_name != "" %>
+        <div class="h-auto border border-dark mb-5 w-75">
+          <h5 class="mb-3 p-2 border-bottom border-dark">
+            <i class="fas fa-search"></i>
+            カフェ名
+          </h5>
+          <div class="mb-3 px-2">
+            <%= @cafe_name %>
+          </div>
+        </div>
+      <% end %>
+      <%= render "admin/searches/cafe_form" %>
     </div>
     <div class='col-md-8'>
       <%= render "admin/caves/index", cafes: @cafes %>

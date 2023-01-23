@@ -1,60 +1,42 @@
-<div class="offset-1">
-	<div class="ml-5">
-	  <div class="ml-5">
-	    <mark class="h4 bg-light ml-5 mb-5 px-4"><%= @customer.name %>さんの会員詳細</mark>
-	  </div>
-	</div>
-</div>
 <div class='container'>
-  <div class='row mt-4 ml-4'>
-    <div class="col-md-12 ml-3">
-      <table class='table table-borderless'>
-        <tbody>
-          <tr>
-            <td style="width: 20%">会員ID</td>
-            <td><%= @customer.id %></td>
-          </tr>
-          <tr>
-            <td style="width: 20%">ユーザー名</td>
-            <td><%= @customer.name %></td>
-          </tr>
-          <tr>
-            <td style="width: 20%">メールアドレス</td>
-            <td><%= @customer.email %></td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-            <td>
-              <%= link_to admin_posts_path do %>
-                投稿数<%= @customer.posts.count %>件
-              <% end %>
-            </td>
-            <td>
-              <%= link_to admin_reviews_path do %>
-                レビュー<%= @customer.reviews.count %>件
-              <% end %>
-            </td>
-            <td>
-              <%= link_to admin_customer_relationships_followers_path(@customer.id) do %>
-                フォロワー<%= @customer.followers.count %>人
-              <% end %>
-            </td>
-            <td>
-              <%= link_to admin_customer_relationships_followings_path(@customer.id) do %>
-                フォロー中<%= @customer.followings.count %>人
-              <% end %>
-            </td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-            <td style="width: 20%"><%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success" %></td>
-            <td style="width: 20%"><%= link_to "ユーザーを削除", admin_customer_path(@customer.id), method: :delete, class: "btn btn-danger", data: { confirm: "削除してよろしいですか?" } %></td>
-          </tr>
-        </tbody>
-      </table>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <%= render "layouts/error", obj: @customer %>
+      <h2 class="pt-3 mb-5"><%= @customer.name %>さんの会員詳細</h2>
+      <h5 class ="p-3 ">
+        会員ID：&emsp;<%= @customer.id %>
+      </h5>
+      <h5 class="p-3">
+        ユーザー名：&emsp;<%= @customer.name %>
+      </h5>
+      <h5 class="p-3">
+        メールアドレス：&emsp;<%= @customer.email %>
+      </h5>
+    <div class="row">
+      <div class="p-3">
+        <%= link_to admin_customer_posts_customer_index_path(@customer.id) do %>
+          投稿数<%= @customer.posts.count %>件
+        <% end %>
+      </div>
+      <div class="p-3">
+        <%= link_to admin_customer_reviews_customer_index_path(@customer.id) do %>
+          レビュー<%= @customer.reviews.count %>件
+        <% end %>
+      </div>
+      <div class="p-3">
+        <%= link_to admin_customer_relationships_followers_path(@customer.id) do %>
+          フォロワー<%= @customer.followers.count %>人
+        <% end %>
+      </div>
+      <div class="p-3">
+        <%= link_to admin_customer_relationships_followings_path(@customer.id) do %>
+          フォロー中<%= @customer.followings.count %>人
+        <% end %>
+      </div>
+    </div>
+    <div class="py-5">
+      <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-outline-success mx-5" %>
+      <%= link_to "ユーザーを削除", admin_customer_path(@customer.id), method: :delete, class: "btn btn-outline-danger mx-5", data: { confirm: "削除してよろしいですか?" } %>
     </div>
   </div>
 </div>
-

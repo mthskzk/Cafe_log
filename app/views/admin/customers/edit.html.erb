@@ -1,35 +1,23 @@
-<div class="offset-1">
-	<div class="ml-5">
-	  <div class="ml-5">
-	    <mark class="h4 bg-light ml-5 mb-5 px-4"><%= @customer.name %>さんの会員情報編集</mark>
-	  </div>
-	</div>
-</div>
 <div class='container'>
-  <div class='row mt-4 ml-4'>
-    <div class="col-md-12 ml-3">
-      <%= render "layouts/error", obj: @customer %>
-      <%= form_with model: @customer,url: admin_customer_path(@customer.id), local:true do |f| %>
-        <table class='table table-borderless'>
-          <tbody>
-            <tr>
-              <td style="width: 20%"><%= f.label :id, "会員ID" %></td>
-              <td><%= @customer.id %></td>
-            </tr>
-            <tr>
-              <td style="width: 20%"><%= f.label :name, "氏名" %></td>
-              <td><%= f.text_field :name, size: "30", class: "form-control name" %></td>
-            </tr>
-            <tr>
-              <td style="width: 20%"><%= f.label :email, "メールアドレス" %></td>
-              <td><%= f.email_field :email, size: "50", class: "form-control email" %></td>
-            </tr>
-            <tr>
-              <td><%= f.submit "変更を保存", class: 'btn btn-success' %></td>
-            </tr>
-          </tbody>
-        </table>
-      <% end %>
-    </div>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <%= render "layouts/error", obj: @customer %>
+    <h2>会員情報編集</h2>
+    <%= form_with model: @customer, url: admin_customer_path(@customer.id), local:true do |f| %>
+      <div class ="form-group pt-5">
+        会員ID：&emsp;<%= @customer.id %>
+      </div>
+      <div class="form-group">
+        <%= f.label :name, "ユーザー名" %>
+        <%= f.text_field :name, class: "form-control name" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.email_field :email, class: "form-control email" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "編集内容を保存", class: "btn btn-outline-dark mt-3" %>
+      </div>
+    <% end %>
   </div>
 </div>

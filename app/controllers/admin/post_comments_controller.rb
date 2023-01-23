@@ -1,4 +1,6 @@
 class Admin::PostCommentsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
      @post = Post.find(params[:post_id])
   end

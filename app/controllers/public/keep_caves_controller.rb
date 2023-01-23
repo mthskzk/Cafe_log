@@ -1,4 +1,6 @@
 class Public::KeepCavesController < ApplicationController
+  before_action :authenticate_customer!
+
   def index
     @customer = current_customer
     keep_cafes = KeepCafe.where(customer_id: @customer.id).pluck(:cafe_id)

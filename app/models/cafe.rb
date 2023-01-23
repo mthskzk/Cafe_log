@@ -7,7 +7,7 @@ class Cafe < ApplicationRecord
   has_one_attached :image
 
   # validates :image, presence: true
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   # validates :prefectures, presence: true
   # validates :address_after, presence: true
   # validates :nearest_station, presence: true

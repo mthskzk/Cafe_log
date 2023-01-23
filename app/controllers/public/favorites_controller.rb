@@ -1,4 +1,6 @@
 class Public::FavoritesController < ApplicationController
+   before_action :authenticate_customer!
+   
   def index
     @post = Post.find(params[:post_id])
     @favorite = Favorite.find_by(post_id: @post.id)

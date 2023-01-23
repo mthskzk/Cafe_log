@@ -2,6 +2,7 @@
   <mark class="h5 bg-white border border-dark py-4 px-5">新規投稿</mark>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <%= render "layouts/error", obj: @post %>
       <%= form_with model: @post, local: true do |f| %>
         <div>
           <%= f.label :image, '画像' %><br>

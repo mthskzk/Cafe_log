@@ -8,6 +8,7 @@
 <div class='container'>
   <div class='row mt-4 ml-4'>
     <div class="col-md-12 ml-3">
+      <%= render "layouts/error", obj: @customer %>
       <%= form_with model: @customer,url: admin_customer_path(@customer.id), local:true do |f| %>
         <table class='table table-borderless'>
           <tbody>

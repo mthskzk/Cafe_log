@@ -1,4 +1,6 @@
 class Admin::CavesController < ApplicationController
+  before_action :authenticate_admin!
+  
   def new
     @cafe = Cafe.new
   end

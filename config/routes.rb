@@ -58,7 +58,7 @@ Rails.application.routes.draw do
       resources :reviews, only:[:index]
       resources :keep_caves, only: [:index]
     end
-    resources :caves, only: [:index, :show] do
+    resources :caves, only: [:show] do
       get 'reviews/cafe_index'
       resource :keep_caves, only: [:create, :destroy]
     end

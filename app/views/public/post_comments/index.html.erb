@@ -5,18 +5,27 @@
       <% if @post.body == "" %>
 
       <% else %>
-        <li>
+        <div>
           <%= link_to customer_path(@post.customer.id) do %>
             <%= image_tag @post.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
             <%= @post.customer.name %>
           <% end %>
-        </li>
-        <li>
+        </div>
+        <div class="pl-5">
           <%= @post.body %>
-        </li>
+        </div>
+        <div class="border-bottom border-dark pb-3 pl-5">
+          <% @post.tags.each do |tag| %>
+            <i class="fas fa-tag"></i>
+            <%= link_to tag.name,  searches_search_sns_path(content: tag.name, model:"tag", method: "perfect") %>&thinsp;
+          <% end %>
+        </div>
       <% end %>
-      <!--コメント入力フォーム-->
-      <%= render "form", post1: @post, comment: @comment %>
+      <div class="border-bottom border-dark pb-3 my-3">
+        <!--コメント入力フォーム-->
+        <%= render "form", post1: @post, comment: @comment %>
+      </div>
+
       <!--コメント一覧-->
       <div id="commet_index">
         <%= render "index", post1: @post %>

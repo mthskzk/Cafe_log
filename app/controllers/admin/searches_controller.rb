@@ -1,4 +1,6 @@
 class Admin::SearchesController < ApplicationController
+  before_action :authenticate_admin!
+
   def search_sns
     @model = params[:model]
     @key_word = params[:key_word]

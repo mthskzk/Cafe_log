@@ -1,4 +1,6 @@
 class Public::SearchesController < ApplicationController
+  before_action :authenticate_customer!, except: [:search_cafe]
+
   def search_sns
     @model = params[:model]
     @content = params[:content]

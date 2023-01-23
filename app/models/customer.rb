@@ -22,7 +22,8 @@ class Customer < ApplicationRecord
 
   has_one_attached :profile_image
 
-  validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :name, length: { minimum: 2, maximum: 20 }
+  validates :email, uniqueness: true
 
   def get_profile_image
     (profile_image.attached?) ? profile_image: "no_image_user.png"

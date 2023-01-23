@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row ">
     <div class="col-12">
+      <%= render "layouts/error", obj: @cafe %>
       <%= form_with model: @cafe, url:admin_cafe_path(@cafe.id), local: true do |f| %>
         <div class="form-group  row mt-5 mb-4" >
           <%= f.label :イメージ画像 ,class:"col-md-2 text-center" %>

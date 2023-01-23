@@ -1,4 +1,7 @@
 class Public::ReviewsController < ApplicationController
+  before_action :authenticate_customer!, except: [:cafe_index]
+  before_action :ensure_correct_customer, only:[:destroy, :edit, :update]
+
   def new
     @review = Review.new
     if params[:cafe_id].present?
@@ -59,5 +62,12 @@ class Public::ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:body, :rate)
+  end
+
+  def ensure_correct_customer
+    @customer = Customer.find(params[:id])
+    unless @customer == current_customer
+      redirect_to customer_path(current_customer)
+    end
   end
 end

@@ -1,4 +1,7 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :ensure_correct_customer, only:[:edit, :update, :destroy]
+
   def new
     @post = Post.new
     if params[:cafe_id].present?
@@ -63,4 +66,12 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:body, :status, :image)
   end
+
+  def ensure_correct_customer
+    @customer = Customer.find(params[:id])
+    unless @customer == current_customer
+      redirect_to customer_path(current_customer)
+    end
+  end
+
 end

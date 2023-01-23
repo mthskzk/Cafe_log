@@ -46,11 +46,12 @@
               <div><%= safe_join(review1.body.split("\n"),tag(:br)) %></div>
               <div class="see-close btn badge badge-pill badge-dark">閉じる</div>
             </div>
-          <% else %>
+          <% elsif review1.body.length > 0 %>
             <div>
               <div><コメント></div>
               <div><%= safe_join(review1.body.split("\n"),tag(:br)) %></div>
             </div>
+          <% else %>
           <% end %>
         </div>
       </div>
@@ -58,7 +59,7 @@
     <!--<div><#%= review1.created_at, format: :dayonly %></div>-->
   <% end %>
 <% else %>
-  <li>レビューがありません</li>
+  <div>レビューがありません</div>
 <% end %>
 
 
@@ -74,4 +75,4 @@
     $(this).closest(".card-text").find(".truncated").show();
     $(this).closest(".card-text").find(".untruncated").hide();
   })
-</script>cript>pt>ipt>
+</script>

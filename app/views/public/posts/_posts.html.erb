@@ -63,14 +63,14 @@
               <div class="see-more btn badge badge-pill badge-dark" >続きを読む</div>
             </div>
             <div class="untruncated" style="display: none">
-              <p><%= post1.body %></p>
+              <div class="pt-2"><%= post1.body %></div>
               <!--投稿に紐づくタグを表示-->
-              <p>
+              <div>
                 <% post1.tags.each do |tag| %>
                   <i class="fas fa-tag"></i>
                   <%= link_to tag.name,  searches_search_sns_path(content: tag.name, model:"tag", method: "perfect") %>&thinsp;
                 <% end %>
-              </p>
+              </div>
               <div class="see-close badge btn badge-pill badge-dark">閉じる</div>
             </div>
           <% end %>

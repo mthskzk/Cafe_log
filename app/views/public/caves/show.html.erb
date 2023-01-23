@@ -5,9 +5,11 @@
         <h5 class="px-3">
           <%= @cafe.name %>
         </h5>
-        <div id="keep_<%= @cafe.id %>">
-          <%= render "public/keep_caves/btn", cafe: @cafe %>
-        </div>
+        <% if customer_signed_in? %>
+          <div id="keep_<%= @cafe.id %>">
+            <%= render "public/keep_caves/btn", cafe: @cafe %>
+          </div>
+        <% end %>
       </div>
       <div class="px-3">
         <%= render "rate_average", cafe: @cafe %>
@@ -24,7 +26,9 @@
               <% end %>
             </th>
             <th>
-              <%= link_to "SNSで投稿", new_post_path(cafe_id: @cafe.id), class: "btn btn-outline-dark" %>
+              <% if customer_signed_in? %>
+                <%= link_to "SNSで投稿", new_post_path(cafe_id: @cafe.id), class: "btn btn-outline-dark" %>
+              <% end %>
             </th>
           </tr>
           <tr>
@@ -34,7 +38,9 @@
               <% end %>
             </th>
             <th>
-              <%= link_to "レビューする", new_review_path(cafe_id: @cafe.id), class: "btn btn-outline-dark" %>
+              <% if customer_signed_in? %>
+                <%= link_to "レビューする", new_review_path(cafe_id: @cafe.id), class: "btn btn-outline-dark" %>
+              <% end %>
             </th>
           </tr>
         </tbody>

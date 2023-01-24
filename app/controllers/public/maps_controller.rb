@@ -8,6 +8,7 @@ class Public::MapsController < ApplicationController
       # 地図の拡大度を設定
       gon.zoom = 5
     else
+    #byebug
       @area = params[:area]
       # 検索された地域の緯度経度を設定
       address = Geocoder.search(@area)

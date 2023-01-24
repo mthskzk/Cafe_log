@@ -25,6 +25,10 @@
     <div class='col-md-8 mx-auto'>
       <h5>検索結果</h5>
       <%= render "admin/posts/posts", posts: @records %>
+      <!--ページネーション-->
+      <div class="d-flex justify-content-center">
+        <%= paginate @records %>
+      </div>
     </div>
   </div>
 </div>

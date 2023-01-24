@@ -16,6 +16,10 @@
     <div class='col-md-8 offset-md-1'>
       <h2>投稿</h2>
       <%= render 'public/posts/posts',posts: @posts %>
+      <!--ページネーション-->
+      <div class="d-flex justify-content-center">
+        <%= paginate @posts %>
+      </div>
     </div>
   </div>
 </div>

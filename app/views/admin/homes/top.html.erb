@@ -3,6 +3,9 @@
     <div class="col-8 mx-auto">
       <h3 class="pb-2">ユーザーによって登録されたカフェ一覧</h3>
       <%= render "admin/caves/index", cafes: @cafes %>
+      <div class="d-flex justify-content-center">
+        <%= paginate @cafes %>
+      </div>
     </div>
   </div>
 </div>

@@ -24,6 +24,11 @@
       <h5>検索結果</h5>
       <div>
         <%= render "admin/reviews/index", reviews: @records %>
+        <!--ページネーション-->
+        <div class="d-flex justify-content-center">
+          <%= paginate @records %>
+        </div>
       </div>
+    </div>
   </div>
 </div>

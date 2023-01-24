@@ -11,8 +11,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @customer = current_customer
-    @posts = Post.all
-    @tag_list = Tag.all
+    @posts = Post.page(params[:page]).per(5)
   end
 
   def create

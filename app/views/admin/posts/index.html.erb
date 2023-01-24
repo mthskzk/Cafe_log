@@ -5,6 +5,10 @@
     </div>
     <div class="col-8 mx-auto">
       <%= render 'admin/posts/posts', posts: @posts %>
+      <!--ページネーション-->
+      <div class="d-flex justify-content-center">
+        <%= paginate @posts %>
+      </div>
     </div>
   </div>
 </div>

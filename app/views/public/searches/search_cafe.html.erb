@@ -41,6 +41,9 @@
       <h2>検索結果</h2>
       <!--<#%= link_to "評価順", searches_search_cafe_path(area: @area, key_word: @key_word, sort: "rate") %> | <#%= link_to "レビュー数", searches_search_cafe_path(area: @area, key_word: @key_word, sort: "review") %>-->
       <%= render 'public/caves/index',cafes: @cafes %>
+      <div class="d-flex justify-content-center">
+        <%= paginate @cafes %>
+      </div>
     </div>
   </div>
 </div>

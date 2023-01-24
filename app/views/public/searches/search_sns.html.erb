@@ -24,12 +24,11 @@
       <h2>検索結果</h2>
       <% if @model == "customer" %>
         <%= render 'public/relationships/index',customers: @records %>
-      <% elsif @model == "post" %>
+      <% else %>
         <%= render 'public/posts/posts',posts: @records %>
-      <% elsif @model == "tag" %>
-        <%= render 'public/posts/posts', posts: @records %>
-      <% elsif @model == "cafe" %>
-        <%= render 'public/posts/posts', posts: @records %>
+        <div class="d-flex justify-content-center">
+          <%= paginate @records %>
+        </div>
       <% end %>
     </div>
   </div>

@@ -6,6 +6,10 @@
     </div>
     <div class='col-md-8'>
       <%= render "index", cafes: @cafes %>
+      <!--ページネーション-->
+      <div class="d-flex justify-content-center">
+        <%= paginate @cafes %>
+      </div>
     </div>
   </div>
 </div>

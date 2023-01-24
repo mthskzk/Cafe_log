@@ -4,7 +4,7 @@ class Public::KeepCavesController < ApplicationController
   def index
     @customer = current_customer
     keep_cafes = KeepCafe.where(customer_id: @customer.id).pluck(:cafe_id)
-    @cafes = Cafe.where(id: keep_cafes)
+    @cafes = Cafe.where(id: keep_cafes).page(params[:page]).per(5)
   end
 
   def create

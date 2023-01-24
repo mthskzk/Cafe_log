@@ -7,6 +7,9 @@
     <div class='col-md-8 offset-md-1'>
       <h2>検索結果</h2>
       <%= render 'public/caves/index',cafes: @cafes %>
+      <div class="d-flex justify-content-center">
+        <%= paginate @cafes %>
+      </div>
     </div>
   </div>
 </div>

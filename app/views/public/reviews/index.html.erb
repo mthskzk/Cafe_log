@@ -7,6 +7,9 @@
     <div class='col-7 offset-1'>
       <h2>レビュー一覧</h2>
       <%= render 'index', reviews: @reviews %>
+      <div class="d-flex justify-content-center">
+        <%= paginate @reviews %>
+      </div>
     </div>
   </div>
 </div>

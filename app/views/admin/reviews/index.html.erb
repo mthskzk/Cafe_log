@@ -7,6 +7,9 @@
       <h5>レビュー一覧</h5>
       <div>
         <%= render "admin/reviews/index", reviews: @reviews %>
+        <div class="d-flex justify-content-center">
+          <%= paginate @reviews %>
+        </div>
       </div>
     </div>
   </div>

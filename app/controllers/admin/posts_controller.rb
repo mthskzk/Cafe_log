@@ -2,7 +2,7 @@ class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(5)
   end
 
   def destroy
@@ -13,7 +13,7 @@ class Admin::PostsController < ApplicationController
 
   def customer_index
     @customer = Customer.find(params[:customer_id])
-    @posts = Post.where(customer_id: @customer.id)
+    @posts = Post.where(customer_id: @customer.id).page(params[:page]).per(5)
   end
 
 end

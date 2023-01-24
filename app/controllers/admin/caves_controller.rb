@@ -1,12 +1,12 @@
 class Admin::CavesController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def new
     @cafe = Cafe.new
   end
 
   def index
-    @cafes = Cafe.all
+    @cafes = Cafe.page(params[:page]).per(10)
   end
 
   def show

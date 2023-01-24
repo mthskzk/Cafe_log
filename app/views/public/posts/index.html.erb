@@ -8,6 +8,9 @@
     <div class='col-8 offset-md-1'>
       <h2>投稿</h2>
       <%= render 'posts',posts: @posts %>
+      <div class="d-flex justify-content-center">
+        <%= paginate @posts %>
+      </div>
     </div>
   </div>
 </div>

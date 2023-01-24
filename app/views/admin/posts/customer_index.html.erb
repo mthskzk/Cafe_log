@@ -4,6 +4,10 @@
       <h5><%= @customer.name%>さんの投稿一覧</h5>
       <div>
         <%= render 'admin/posts/posts', posts: @posts %>
+        <!--ページネーション-->
+        <div class="d-flex justify-content-center">
+          <%= paginate @posts %>
+        </div>
       </div>
     </div>
   </div>

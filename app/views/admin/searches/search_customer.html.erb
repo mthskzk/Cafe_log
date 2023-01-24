@@ -32,6 +32,10 @@
     <div class='col-8'>
       <h5>検索結果</h5>
       <%= render "admin/customers/index", customers: @customers %>
+       <!--ページネーション-->
+      <div class="d-flex justify-content-center">
+        <%= paginate @customers %>
+      </div>
     </div>
   </div>
 </div>

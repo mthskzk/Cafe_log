@@ -13,10 +13,11 @@
   let marker = []; // マーカーを複数表示させたいので、配列化
   let infoWindow = []; // 吹き出しを複数表示させたいので、配列化
   const cafes = gon.caves; // コントローラーで定義したインスタンス変数を変数に代入
+  console.log(cafes)
 
   function initMap(){
     // 現在位置の特定
-    navigator.geolocation.getCurrentPosition(function (position){
+    //navigator.geolocation.getCurrentPosition(function (position){
       // LatLngに位置座標を代入
        LatLng = new google.maps.LatLng(gon.lat,gon.lag);
 
@@ -55,7 +56,7 @@
           infoWindow[i].open(map, marker[i]);
         });
       }
-    });
+    //});
   }
 </script>
 

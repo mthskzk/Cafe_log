@@ -1,6 +1,6 @@
 class Public::PostCommentsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :ensure_correct_customer, only[:destroy]
+  before_action :ensure_correct_customer, only:[:destroy]
 
   def index
     @post = Post.find(params[:post_id])

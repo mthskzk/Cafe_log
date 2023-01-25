@@ -7,6 +7,7 @@
           <%= post_comment.customer.name %>
         <% end %>
       </div>
+       <!--自分のコメントの時は削除ボタンが出てくる-->
       <% if post_comment.customer == current_customer %>
         <div class="pt-2 pl-5 mr-auto">
           <%= link_to 'コメントを削除する', post_post_comment_path(post1.id,post_comment.id), method: :delete, remote: true, class: "btn btn-sm btn-outline-dark", data: { confirm: '削除してよろしいですか?' } %>
@@ -15,7 +16,6 @@
     </div>
     <div class="pl-5">
       <%= post_comment.comment %>
-      <!--自分のコメントの時は削除ボタンが出てくる-->
     </div>
   </div>
 <% end %>

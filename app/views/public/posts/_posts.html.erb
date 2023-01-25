@@ -1,4 +1,3 @@
-
 <% if posts.exists? %>
   <% posts.each do |post1| %>
     <div class="card w-75 m-4 p-2">
@@ -63,7 +62,7 @@
               <div class="see-more btn badge badge-pill badge-dark" >続きを読む</div>
             </div>
             <div class="untruncated" style="display: none">
-              <div class="pt-2"><%= post1.body %></div>
+              <div class="pt-2"><%= safe_join(post1.body.split("\n"),tag(:br)) %></div>
               <!--投稿に紐づくタグを表示-->
               <div>
                 <% post1.tags.each do |tag| %>

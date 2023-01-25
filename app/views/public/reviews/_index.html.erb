@@ -17,11 +17,14 @@
         &thinsp;
       </div>
       <div class="card-body">
-        <div class="card-title border-bottom pb-1">
+        <div class="card-title border-bottom pb-1 d-flex">
           <%= link_to customer_path(review1.customer_id) do %>
             <%= image_tag review1.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
             <%= review1.customer.name %>
           <% end %>
+          <div class="ml-auto">
+            <%= l review1.created_at, format: :dayonly %>
+          </div>
         </div>
         <div class="card-subtitle py-2 border-bottom">
           <div class="py-2">
@@ -35,28 +38,21 @@
           </div>
         </div>
         <div class="card-text">
-          <% if review1.body.length > 20 %>
+          <% if review1.body.present? %>
             <div class="truncated">
               <div><コメント></div>
-              <div class="body"><%= safe_join(review1.body.split("\n"),tag(:br)) %></div>
               <div class="see-more btn badge badge-pill badge-dark">続きを読む</div>
             </div>
             <div class="untruncated" style="display: none">
               <div><コメント></div>
-              <div><%= safe_join(review1.body.slice("\n").split("\n"),tag(:br)) %></div>
-              <div class="see-close btn badge badge-pill badge-dark">閉じる</div>
-            </div>
-          <% elsif review1.body.length > 0 %>
-            <div>
-              <div><コメント></div>
               <div><%= safe_join(review1.body.split("\n"),tag(:br)) %></div>
+              <div class="see-close btn badge badge-pill badge-dark">閉じる</div>
             </div>
           <% else %>
           <% end %>
         </div>
       </div>
     </div>
-    <!--<div><#%= review1.created_at, format: :dayonly %></div>-->
   <% end %>
 <% else %>
   <div>レビューがありません</div>

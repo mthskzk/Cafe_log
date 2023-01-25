@@ -13,7 +13,7 @@
             </div>
             <!--投稿の削除ができる-->
             <div class="py-2 px-2 mr-2">
-              <%= link_to post_path(post1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } do %>
+              <%= link_to admin_post_path(post1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } do %>
                 <i class="fas fa-trash" aria-hidden="true" style="color: black; font-size:1.7em;"></i>
               <% end %>
             </div>

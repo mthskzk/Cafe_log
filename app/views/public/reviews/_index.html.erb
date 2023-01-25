@@ -38,12 +38,12 @@
           <% if review1.body.length > 20 %>
             <div class="truncated">
               <div><コメント></div>
-              <div><%= safe_join(review1.body.truncate(20).split("\n"),tag(:br)) %></div>
+              <div class="body"><%= safe_join(review1.body.split("\n"),tag(:br)) %></div>
               <div class="see-more btn badge badge-pill badge-dark">続きを読む</div>
             </div>
             <div class="untruncated" style="display: none">
               <div><コメント></div>
-              <div><%= safe_join(review1.body.split("\n"),tag(:br)) %></div>
+              <div><%= safe_join(review1.body.slice("\n").split("\n"),tag(:br)) %></div>
               <div class="see-close btn badge badge-pill badge-dark">閉じる</div>
             </div>
           <% elsif review1.body.length > 0 %>
@@ -61,9 +61,6 @@
 <% else %>
   <div>レビューがありません</div>
 <% end %>
-
-
-
 
 <script>
   $('.see-more').click(function(){

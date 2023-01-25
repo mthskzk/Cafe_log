@@ -1,32 +1,42 @@
-<header class="jumbotron jumbotron-fluid">
+<header class="header mb-5">
   <nav class="navbar navbar-expand-sm" >
     <div class="container">
       <div class="navbar-brand">
-        <%= link_to root_path do %>
-          <%= image_tag 'logo.jpg', size:"100x50" %>
+        <% if admin_signed_in? %>
+          <%= link_to admin_homes_top do %>
+            <%= image_tag 'logo.png', size:"200x100" %>
+          <% end %>
+        <% else %>
+          <%= link_to root_path do %>
+            <%= image_tag 'logo.png', size:"200x100" %>
+          <% end %>
         <% end %>
-        <%= link_to "SNSトップ" ,posts_path %>
       </div>
 　　　<div class="collapse navbar-collapse justify-content-end">
 　　　  <ul class="navbar-nav">
           <% if customer_signed_in? %>
             <div class="content row">
+              <li class="text-white"><%= link_to "SNSトップ", posts_path, class: 'text-white  align-middle' %>/</li>
               <li class="text-white"><%= link_to "マイページ", customer_path(current_customer), class: 'text-white  align-middle' %>/</li>
               <li class="text-white"><%= link_to "いいねした投稿", favorites_like_path, class: 'text-white align-middle' %>/</li>
               <li class="text-white"><%= link_to "保存したカフェ", customer_keep_caves_path(current_customer.id), class: 'text-white align-middle' %>/</li>
               <li class="text-white"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'text-white align-middle' %></li>
             </div>
           <% elsif admin_signed_in? %>
-            <li><%= link_to "会員一覧", admin_customers_path, class: 'text-white align-middle' %></li>
-            <li><%= link_to "投稿一覧", admin_posts_path, class: 'text-white align-middle' %></li>
-            <li><%= link_to "レビュー一覧", admin_reviews_path, class: 'text-white align-middle' %></li>
-            <li><%= link_to "カフェ一覧", admin_caves_path, class: 'text-white align-middle' %></li>
-            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'text-white align-middle' %></li>
+            <div class="content row">
+              <li class="text-white"><%= link_to "会員一覧", admin_customers_path, class: 'text-white align-middle' %>/</li>
+              <li class="text-white"><%= link_to "投稿一覧", admin_posts_path, class: 'text-white align-middle' %>/</li>
+              <li class="text-white"><%= link_to "レビュー一覧", admin_reviews_path, class: 'text-white align-middle' %>/</li>
+              <li class="text-white"><%= link_to "カフェ一覧", admin_caves_path, class: 'text-white align-middle' %>/</li>
+              <li class="text-white"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'text-white align-middle' %></li>
+            </div>
           <% else %>
-            <li><%= link_to " About", homes_about_path, class: 'text-white align-middle' %></li>
-            <li><%= link_to " 検索ページ", homes_top_path, class: 'text-white align-middle' %></li>
-            <li><%= link_to " 新規登録", new_customer_registration_path, class: 'text-white align-middle' %></li>
-            <li><%= link_to " ログイン", new_customer_session_path, class: 'text-white align-middle' %></li>
+            <div class="content row">
+              <li class="text-white"><%= link_to " About", homes_about_path, class: 'text-white align-middle' %>/</li>
+              <li class="text-white"><%= link_to " 検索ページ", homes_top_path, class: 'text-white align-middle' %>/</li>
+              <li class="text-white"><%= link_to " 新規登録", new_customer_registration_path, class: 'text-white align-middle' %>/</li>
+              <li class="text-white"><%= link_to " ログイン", new_customer_session_path, class: 'text-white align-middle' %></li>
+            </div>
           <% end %>
         </ul>
 　　　</div>
@@ -36,7 +46,7 @@
 </header>
 
 <style>
-  .jumbotron {
+  .header {
     background-image: url("<%= asset_path('background_header.jpg') %>");
     background-size: cover;
     background-position: center 60%;

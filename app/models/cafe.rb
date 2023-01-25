@@ -6,14 +6,7 @@ class Cafe < ApplicationRecord
 
   has_one_attached :image
 
-  # validates :image, presence: true
   validates :name, presence: true, uniqueness: true
-  # validates :prefectures, presence: true
-  # validates :address_after, presence: true
-  # validates :nearest_station, presence: true
-  # validates :telephone_number, presence: true
-  # validates :business_hours, presence: true
-  # validates :regular_holiday, presence: true
   validates :is_deleted, inclusion: { in: [true, false] }
 
   # 住所を基準に緯度経度を算出

@@ -26,11 +26,5 @@ class Public::SearchesController < ApplicationController
     if @area == ""
       @area = "全国"
     end
-    # sort = params[:sort]
-    # if sort == "rate" or sort == nil
-      # @cafes = Cafe.search_for(@area, @key_word).order("rate DESC")
-    # elsif sort == "review"
-      # @cafes = Cafe.search_for(@area, @key_word).joins(:reviews).order("count(cafe_id) DESC")
-    # end
   end
 end

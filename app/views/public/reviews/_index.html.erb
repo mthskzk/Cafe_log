@@ -4,9 +4,9 @@
       <div class="card-header bg-dark d-flex flex-row-reverse">
         <% if review1.customer_id == current_customer.id %>
           <div class="px-2">
-              <%= link_to review_path(review1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } do %>
-                <i class="fas fa-trash" aria-hidden="true" style="color: white; font-size:1.7em;"></i>
-              <% end %>
+            <%= link_to review_path(review1.id), method: :delete, data: { confirm: '削除してよろしいですか?' } do %>
+              <i class="fas fa-trash" aria-hidden="true" style="color: white; font-size:1.7em;"></i>
+            <% end %>
           </div>
           <div class="px-2">
             <%= link_to edit_review_path(review1.id) do %>

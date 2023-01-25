@@ -1,15 +1,18 @@
 class Public::MapsController < ApplicationController
   def index
-    if params[:area] == "全国"
-      @area = params[:area]
+    @area = params[:area]
+    @key_word = params[:key_word]
+    if @area == "全国"
+      # 調べたカフェをJavaScriptに渡す
+      gon.caves = Cafe.search_for("", @key_word)
       # areaの検索フォームが空のときは日本の中心の緯度経度を設定
       gon.lat = 37.592850
       gon.lag = 139.273600
       # 地図の拡大度を設定
       gon.zoom = 5
     else
-    #byebug
-      @area = params[:area]
+      # 調べたカフェをJavaScriptに渡す
+      gon.caves = Cafe.search_for(@area, @key_word)
       # 検索された地域の緯度経度を設定
       address = Geocoder.search(@area)
       gon.lat = address.first.coordinates[0]
@@ -35,6 +38,6 @@ class Public::MapsController < ApplicationController
         gon.zoom = 12.5
       end
     end
-    gon.caves = Cafe.all
+
   end
 end

@@ -24,7 +24,11 @@ class Cafe < ApplicationRecord
   end
 
   def self.search_for(area, key_word)
-    Cafe.where("prefectures LIKE ? OR address_after LIKE ?", "%" + area + "%",  "%" + area + "%").where("name LIKE ?", "%" + key_word + "%")
+    if area == "京都"
+      Cafe.where("prefectures LIKE ?", area + "%")
+    else
+      Cafe.where("prefectures LIKE ? OR address_after LIKE ?", "%" + area + "%",  "%" + area + "%").where("name LIKE ?", "%" + key_word + "%")
+    end
   end
 
   def self.search_post_for(content, method)

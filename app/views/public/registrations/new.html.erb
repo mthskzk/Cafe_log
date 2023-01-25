@@ -6,11 +6,11 @@
         <%= render "public/shared/error_messages", resource: resource %>
         <div class="field pb-2 pt-4">
           <%= f.label :name, class:"font-weight-bold" %><br>
-          <%= f.text_field :name, size: "40" %>
+          <%= f.text_field :name, size: "40", autofocus: true %>
         </div>
         <div class="field pb-2">
           <%= f.label :email, class:"font-weight-bold" %><br />
-          <%= f.email_field :email, size: "40", autofocus: true, autocomplete: "email" %>
+          <%= f.email_field :email, size: "40", autocomplete: "email" %>
         </div>
         <div class="field pb-2">
           <%= f.label :password, class:"font-weight-bold" %>

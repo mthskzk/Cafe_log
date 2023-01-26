@@ -60,6 +60,12 @@ class Cafe < ApplicationRecord
     end
   end
 
+  # 会員側で登録されていないカフェを投稿・レビューに紐づけできるようにバリデーションを切った
+  # 1つでも空白があるものは管理者のトップページに表示されるようにする
+  def self.blank_exist
+    Cafe.where(prefectures: "").or(Cafe.where(address_after: "")).or(Cafe.where(nearest_station: "")).or(Cafe.where(telephone_number: "")).or(Cafe.where(business_hours: "")).or(Cafe.where(regular_holiday: ""))
+  end
+
   # カフェが保存されているかどうかの確認
   def keep_by?(customer)
     keep_caves.exists?(customer_id: customer.id)

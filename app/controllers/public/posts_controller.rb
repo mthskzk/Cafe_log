@@ -67,7 +67,8 @@ class Public::PostsController < ApplicationController
   end
 
   def ensure_correct_customer
-    @customer = Customer.find(params[:id])
+    post1 = Post.find(params[:id])
+    @customer = Customer.find_by(id: post1.customer_id)
     unless @customer == current_customer
       redirect_to customer_path(current_customer)
     end

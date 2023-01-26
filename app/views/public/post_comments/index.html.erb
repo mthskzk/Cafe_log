@@ -12,7 +12,7 @@
           <% end %>
         </div>
         <div class="pl-5">
-          <%= @post.body %>
+          <%= safe_join(@post.body.split("\n"),tag(:br)) %>
         </div>
         <div class="border-bottom border-dark pb-3 pl-5">
           <% @post.tags.each do |tag| %>

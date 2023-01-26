@@ -15,7 +15,7 @@
       <% end %>
     </div>
     <div class="pl-5">
-      <%= post_comment.comment %>
+      <%= safe_join(post_comment.comment.split("\n"),tag(:br)) %>
     </div>
   </div>
 <% end %>

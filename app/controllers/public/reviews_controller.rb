@@ -65,7 +65,8 @@ class Public::ReviewsController < ApplicationController
   end
 
   def ensure_correct_customer
-    @customer = Customer.find(params[:id])
+    review = Review.find(params[:id])
+    @customer = Customer.find_by(id: review.customer_id)
     unless @customer == current_customer
       redirect_to customer_path(current_customer)
     end

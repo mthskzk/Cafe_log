@@ -26,7 +26,8 @@ class Public::PostCommentsController < ApplicationController
   end
 
   def ensure_correct_customer
-    @customer = Customer.find(params[:id])
+    comment = PostComment.find_by(id: params[:id], post_id: params[:post_id])
+    @customer = Customer.find_by(id: comment.customer_id)
     unless @customer == current_customer
       redirect_to customer_path(current_customer)
     end

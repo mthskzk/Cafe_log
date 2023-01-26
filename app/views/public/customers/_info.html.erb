@@ -6,11 +6,19 @@
     </tr>
     <tr>
       <th>フォロー中</th>
-      <th><%= render "public/relationships/following_count", customer: customer %></th>
+      <th>
+        <div id="following_count_<%= customer.id %>">
+          <%= render "public/relationships/following_count", customer: customer %>
+        </div>
+      </th>
     </tr>
     <tr>
       <th>フォロワー</th>
-      <th><%= render "public/relationships/follower_count", customer: customer %></th>
+      <th>
+        <div id="follower_count_<%= customer.id %>">
+          <%= render "public/relationships/follower_count", customer: customer %>
+        </div>
+      </th>
     </tr>
     <tr>
       <th>

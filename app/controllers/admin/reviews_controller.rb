@@ -11,7 +11,7 @@ class Admin::ReviewsController < ApplicationController
     redirect_to admin_reviews_path
   end
 
-   def customer_index
+  def customer_index
     @customer = Customer.find(params[:customer_id])
     @reviews = Review.where(customer_id: @customer.id).page(params[:page]).per(10)
   end

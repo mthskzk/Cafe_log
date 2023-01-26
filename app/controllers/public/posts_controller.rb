@@ -29,7 +29,7 @@ class Public::PostsController < ApplicationController
     end
     if @post.save
       @post.save_tags(tag_list)
-      redirect_to posts_path, notice: "投稿しました"
+      redirect_to posts_path
     else
       render :new
     end
@@ -44,7 +44,7 @@ class Public::PostsController < ApplicationController
     tag_list = params[:post][:tag_name].split(',')
     if @post.update(post_params)
        @post.save_tags(tag_list)
-       redirect_to posts_path, notice: "投稿しました"
+       redirect_to posts_path
     else
       render:edit
     end

@@ -15,7 +15,7 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-      redirect_to customer_path(@customer.id), notice: "編集に成功しました"
+      redirect_to customer_path(@customer.id)
     else
       render "edit"
     end
@@ -41,7 +41,7 @@ class Public::CustomersController < ApplicationController
   def no_guest_customer
     @customer = Customer.find(params[:id])
     if @customer.guest?
-      redirect_to customer_path(current_customer) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+      redirect_to customer_path(current_customer)
     end
   end
 

@@ -1,5 +1,32 @@
-<h2>検索結果:<%= @area %></h2>
-<div id='map'></div>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+       <div class="h-auto border border-dark">
+        <h5 class="mb-3 p-2 border-bottom border-dark">
+          <i class="fas fa-search"></i>
+          このカフェ名から探す
+        </h5>
+        <div class="mb-3 p-2">
+          <% if @key_word == "" %>
+          <!--空白を入れるためのもの-->
+            &nbsp;
+          <% else %>
+            <%= @key_word %>
+          <% end %>
+        </div>
+        <h5 class="my-3 p-2 border-top border-bottom border-dark">
+          <i class="fas fa-search"></i>
+          このエリアから探す
+        </h5>
+        <p class="mb-3 p-2" style="font-size: 1.2rem;"><%= @area %></p>
+      </div>
+    </div>
+    <div class="col-8">
+      <div id='map'></div>
+    </div>
+  </div>
+</div>
+
 
 <style>
   #map{
@@ -12,52 +39,48 @@
   let marker = []; // マーカーを複数表示させたいので、配列化
   let infoWindow = []; // 吹き出しを複数表示させたいので、配列化
   const cafes = gon.caves; // コントローラーで定義したインスタンス変数を変数に代入
-  console.log(cafes)
 
   function initMap(){
-    // 現在位置の特定
-    //navigator.geolocation.getCurrentPosition(function (position){
-      // LatLngに位置座標を代入
-       LatLng = new google.maps.LatLng(gon.lat,gon.lag);
+    // LatLngに位置座標を代入
+    LatLng = new google.maps.LatLng(gon.lat,gon.lag);
 
-      // mapの初期位置設定
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: LatLng,
-        zoom: gon.zoom
+    // mapの初期位置設定
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: LatLng,
+      zoom: gon.zoom
+    });
+    // forは繰り返し処理
+    // 変数iを0と定義し、
+    // その後gonで定義したcafes分繰り返し加える処理を行う
+    for (let i = 0; i < cafes.length; i++){
+      // cafes[i]は変数iのユーザーを取得している
+      marker[i] = new google.maps.Marker({
+        map: map,
+        position: {
+          // DBに保存してある、緯度・経度を呼び出す
+          lat: cafes[i].latitude,
+          lng: cafes[i].longitude
+        }
       });
-      // forは繰り返し処理
-      // 変数iを0と定義し、
-      // その後gonで定義したcafes分繰り返し加える処理を行う
-      for (let i = 0; i < cafes.length; i++){
-        // cafes[i]は変数iのユーザーを取得している
-        marker[i] = new google.maps.Marker({
-          map: map,
-          position: {
-            // DBに保存してある、緯度・経度を呼び出す
-            lat: cafes[i].latitude,
-            lng: cafes[i].longitude
-          }
-        });
 
-        // 変数iを変数idに代入
-        let id = cafes[i]['id']
+      // 変数iを変数idに代入
+      let id = cafes[i]['id']
 
-        // infoWindowは吹き出し
-        infoWindow[i] = new google.maps.InfoWindow({
-          // contentで中身を指定
-          // 今回は文字にリンクを貼り付けた形で表示
-          content: `<a href='/caves/${id}'>${cafes[i].name}</a>`
-        });
-        // markerがクリックされた時、
-        marker[i].addListener("click", function(){
-          // infoWindowを表示
-          infoWindow[i].open(map, marker[i]);
-        });
-      }
-    //});
+      // infoWindowは吹き出し
+      infoWindow[i] = new google.maps.InfoWindow({
+        // contentで中身を指定
+        // 今回は文字にリンクを貼り付けた形で表示
+        content: `<a href='/caves/${id}'>${cafes[i].name}</a>`
+      });
+      // markerがクリックされた時、
+      marker[i].addListener("click", function(){
+        // infoWindowを表示
+        infoWindow[i].open(map, marker[i]);
+      });
+    }
   }
 </script>
 
- <script async defer
+<script async defer
       src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap">
 </script>

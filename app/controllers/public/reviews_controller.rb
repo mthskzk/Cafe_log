@@ -27,7 +27,7 @@ class Public::ReviewsController < ApplicationController
       @review.cafe_id = cafe_exist.id
     end
     if @review.save
-      redirect_to customer_reviews_path(current_customer.id), notice: "レビューしました"
+      redirect_to customer_reviews_path(current_customer.id)
     else
       render :new
     end

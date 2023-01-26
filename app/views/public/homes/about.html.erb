@@ -1,11 +1,11 @@
-<div class='container'>
+<div class='container about'>
   <div class='row '>
-    <div class="col-8 mx-auto">
-      <h3 class="font-weight-bold py-2">カフェログについて</h3>
+    <div class="col-9 mx-auto my-5">
+      <h3 class="font-weight-bold py-2 text-center body">カフェログについて</h3>
       <div>
         <br>
       </div>
-      <p class="pb-2">このサイトはカフェに特化したSNS×レビューサイトです。<br>
+      <p class="body p-4 mx-5">このサイトはカフェに特化したSNS×レビューサイトです。<br>
       人気なカフェやあまり知られていないカフェを見つけることができます。<br>
       また、自分でカフェの評価をしたり他のユーザーが<br>
       書いているレビューを参考にすることもできます。<br>
@@ -16,3 +16,17 @@
     </div>
   </div>
 </div>
+
+<style>
+  .about {
+    background-image: url("<%= asset_path('about.jpg') %>");
+    width:100%;                                            /* 横幅のサイズを指定    */
+    height:500px;
+    background-size: cover;
+  }
+
+  .body {
+    background:rgba(0,0,0,0.5);
+    color: white;
+  }
+</style>

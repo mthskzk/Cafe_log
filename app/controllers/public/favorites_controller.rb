@@ -1,6 +1,6 @@
 class Public::FavoritesController < ApplicationController
    before_action :authenticate_customer!
-   
+
   def index
     @post = Post.find(params[:post_id])
     @favorite = Favorite.find_by(post_id: @post.id)
@@ -24,7 +24,7 @@ class Public::FavoritesController < ApplicationController
   def like
     @customer = current_customer
     favorites = Favorite.where(customer_id: @customer.id).pluck(:post_id)
-    @posts = Post.where(id: favorites).page(params[:page]).per(5)
+    @posts = Post.where(id: favorites).page(params[:page]).per(10)
   end
 
 end

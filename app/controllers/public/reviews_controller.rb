@@ -11,7 +11,7 @@ class Public::ReviewsController < ApplicationController
 
   def index
     @customer = Customer.find(params[:customer_id])
-    @reviews = @customer.reviews.page(params[:page]).per(5)
+    @reviews = @customer.reviews.page(params[:page]).per(10)
   end
 
   def create
@@ -55,7 +55,7 @@ class Public::ReviewsController < ApplicationController
 
   def cafe_index
     @cafe = Cafe.find(params[:cafe_id])
-    @reviews = @cafe.reviews.page(params[:page]).per(5)
+    @reviews = @cafe.reviews.page(params[:page]).per(10)
   end
 
   private

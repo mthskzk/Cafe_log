@@ -13,7 +13,11 @@
                     <%= favorite.customer.name %>
                   <% end %>
                 </td>
-                <td><%= render "public/relationships/btn", customer: favorite.customer %></td>
+                <td>
+                  <div class="follow_change_<%= favorite.customer.id %>">
+                    <%= render "public/relationships/btn", customer: favorite.customer %>
+                  </div>
+                </td>
               </tr>
             <% end %>
           </tbody>

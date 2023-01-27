@@ -2,7 +2,7 @@
   <div class="py-3 mb-2">
     <div class="row">
       <div>
-        <%= link_to customer_path(post_comment.customer_id) do %>
+        <%= link_to admin_customer_path(post_comment.customer_id) do %>
           <%= image_tag post_comment.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
           <%= post_comment.customer.name %>
         <% end %>

@@ -6,7 +6,7 @@
 
       <% else %>
         <div>
-          <%= link_to customer_path(@post.customer.id) do %>
+          <%= link_to admin_customer_path(@post.customer.id) do %>
             <%= image_tag @post.customer.get_profile_image, class: "rounded-circle", size:'50x50' %>
             <%= @post.customer.name %>
           <% end %>
@@ -17,7 +17,7 @@
         <div class="border-bottom border-dark pb-3 pl-5">
           <% @post.tags.each do |tag| %>
             <i class="fas fa-tag"></i>
-            <%= link_to tag.name,  searches_search_sns_path(content: tag.name, model:"tag", method: "perfect") %>&thinsp;
+            <%= link_to tag.name, admin_searches_search_sns_path(key_word: tag.name, model: "tag", method: "perfect") %>&thinsp;
           <% end %>
         </div>
       <% end %>

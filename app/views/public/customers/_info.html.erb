@@ -7,7 +7,7 @@
     <tr>
       <th>フォロー中</th>
       <th>
-        <div id="following_count_<%= customer.id %>">
+        <div class="following_count_<%= customer.id %>">
           <%= render "public/relationships/following_count", customer: customer %>
         </div>
       </th>
@@ -15,7 +15,7 @@
     <tr>
       <th>フォロワー</th>
       <th>
-        <div id="follower_count_<%= customer.id %>">
+        <div class="follower_count_<%= customer.id %>">
           <%= render "public/relationships/follower_count", customer: customer %>
         </div>
       </th>

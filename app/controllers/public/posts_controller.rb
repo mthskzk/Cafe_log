@@ -17,7 +17,8 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id
-    tag_list = params[:post][:tag_name].split(',')
+    # gsubで全角スペースを半角スペースに変換しstripで半角スペースを削除
+    tag_list = params[:post][:tag_name].gsub(/　/," ").strip.split(',')
     cafe_name = params[:post][:cafe_name]
     cafe_exist = Cafe.find_by(name: cafe_name)
     if cafe_exist.nil?

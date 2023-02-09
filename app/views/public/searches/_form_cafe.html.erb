@@ -1,5 +1,5 @@
 <%= form_with url: searches_search_cafe_path, method: :get, local: true do |f| %>
   <%= f.text_field :area, class: "form-control-lg", style: "vertical-align : top;", size: "30",placeholder: "エリア[例:東京、新宿]" %>
-  <%= f.text_field :key_word, class: "form-control-lg ",style: "vertical-align : top;", size: "30",placeholder: "カフェ名[例:スターバックス]" %>
+  <%= f.text_field :key_word, class: "form-control-lg ", style: "vertical-align : top;", size: "30",placeholder: "カフェ名[例:スターバックス]" %>
   <%= f.submit '検索', class: "btn btn-outline-dark btn-lg",style: "vertical-align : top;" %>
 <% end %>

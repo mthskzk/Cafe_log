@@ -3,4 +3,5 @@ class Public::CavesController < ApplicationController
     @cafe = Cafe.find(params[:id])
     gon.cafe = @cafe
   end
+
 end

@@ -70,4 +70,5 @@ class Cafe < ApplicationRecord
   def keep_by?(customer)
     keep_caves.exists?(customer_id: customer.id)
   end
+
 end

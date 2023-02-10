@@ -5,33 +5,33 @@
       <%= render "layouts/error", obj: @post %>
       <%= form_with model: @post, local: true do |f| %>
         <div>
-          <%= f.label :image, '画像' %><br>
+          <%= f.label :image, '画像', class: "h5 font-weight-bold" %><br>
           <%= f.file_field :image %>
         </div>
         <div class="pt-3">
-          <%= f.label :body, 'コメント' %><br>
+          <%= f.label :body, 'コメント', class: "h5 font-weight-bold" %><br>
           <%= f.text_area :body, size: "60x5", autocomplete: "current-password",placeholder: "カフェの感想など自由にご記入ください。" %>
         </div>
 
         <div class="pt-3">
-          <%= f.label :cafe_name, 'カフェ名' %><br>
+          <%= f.label :cafe_name, 'カフェ名', class: "h5 font-weight-bold" %><br>
           <% if @cafe.present? %>
             <%= f.text_field :cafe_name, size: "60", :value => @cafe.name %>
           <% else %>
             <%= f.radio_button :cafe_number, 1, checked: true %>
             <%= f.label "サイトに登録済みのカフェから選択"%><br>
             <%= f.select :cafe_id, options_from_collection_for_select(Cafe.all, :id, :name) %><br>
-            <%= f.radio_button :cafe_number, 2 %>
+            <%= f.radio_button :cafe_number, 2 ,class: "mt-4" %>
             <%= f.label "サイトに新たなカフェを登録"%><br>
             <%= f.text_field :cafe_name, size: "60", placeholder: "正式名称でご記入ください。[例：タリーズコーヒー　赤坂店]" %>
           <% end %>
         </div>
         <div class="pt-3">
-          <%= f.label "Tag" %><br>
+          <%= f.label "Tag", class: "h5 font-weight-bold" %><br>
           <%= f.text_field :tag_name, size: "60", class: 'post_tag_name', placeholder: ",でタグを区切ってください。[例：タリーズ,赤坂,コーヒー]" %>
         </div>
         <div class="pt-3">
-          <%= f.label "表示状態" %><br>
+          <%= f.label "表示状態", class: "h5 font-weight-bold" %><br>
           <%= f.radio_button :status, :false %><%= f.label :post_status_false, "公開" %>&emsp;
           <%= f.radio_button :status, :true %><%= f.label :post_status_true, "非公開" %>
         </div>

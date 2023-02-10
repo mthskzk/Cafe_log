@@ -18,6 +18,11 @@
           <% if @cafe.present? %>
             <%= f.text_field :cafe_name, size: "60", :value => @cafe.name %>
           <% else %>
+            <%= f.radio_button :cafe_number, 1, checked: true %>
+            <%= f.label "サイトに登録済みのカフェから選択"%><br>
+            <%= f.select :cafe_id, options_from_collection_for_select(Cafe.all, :id, :name) %><br>
+            <%= f.radio_button :cafe_number, 2 %>
+            <%= f.label "サイトに新たなカフェを登録"%><br>
             <%= f.text_field :cafe_name, size: "60", placeholder: "正式名称でご記入ください。[例：タリーズコーヒー　赤坂店]" %>
           <% end %>
         </div>

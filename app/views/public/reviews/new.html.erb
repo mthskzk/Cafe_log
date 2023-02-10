@@ -1,27 +1,32 @@
 <div class='container'>
+  <mark class="h5 bg-white border border-dark py-4 px-5">新規レビュー</mark>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <%= render "layouts/error", obj: @review %>
-      <h2>新規投稿</h2>
       <%= form_with model: @review do |f| %>
         <div class="form-group">
-          <%= f.label :cafe_name, 'カフェ名' %>
-          <% if @cafe.present? %>
+          <%= f.label :cafe_name, 'カフェ名', class: "h5 font-weight-bold" %><br>
+          <% if @cafe.present? %>＜
             <%= f.text_field :cafe_name, size: "60", :value => @cafe.name %>
           <% else %>
+            <%= f.radio_button :cafe_number, 1, checked: true %>
+            <%= f.label "サイトに登録済みのカフェから選択"%><br>
+            <%= f.select :cafe_id, options_from_collection_for_select(Cafe.all, :id, :name) %><br>
+            <%= f.radio_button :cafe_number, 2 ,class: "mt-4" %>
+            <%= f.label "サイトに新たなカフェを登録"%><br>
             <%= f.text_field :cafe_name, size: "60", placeholder: "正式名称でご記入ください。[例：タリーズコーヒー　赤坂店]" %>
           <% end %>
         </div>
         <div class="form-group">
-          <%= f.label :body, '本文' %>
+          <%= f.label :body, '本文', class: "h5 font-weight-bold" %>
           <%= f.text_area :body, size: "60x10", class: "form-control post_body",placeholder: "カフェの感想・評価をご記入ください。" %>
         </div>
         <div>
           <%= f.hidden_field :rate, id: :review_star, class:'form-control' %>
-          <%= f.label :rate, '評価' %>
+          <%= f.label :rate, '評価', class: "h5 font-weight-bold" %>
         </div>
         <div id="review_raty"></div>
-        <div>
+        <div class="mt-4">
           <%= f.submit  'レビューを投稿', class: "btn btn-outline-dark" %>
         </div>
       <% end %>

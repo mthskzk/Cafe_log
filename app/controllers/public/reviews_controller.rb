@@ -17,14 +17,23 @@ class Public::ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.customer_id = current_customer.id
-    cafe_name = params[:review][:cafe_name]
-    cafe_exist = Cafe.find_by(name: cafe_name)
-    if cafe_exist.nil?
-      cafe = Cafe.new(name: cafe_name, prefectures: "", address_after: "", nearest_station: "", telephone_number: "", business_hours: "", regular_holiday: "")
-      cafe.save
-      @review.cafe_id = cafe.id
-    else
-      @review.cafe_id = cafe_exist.id
+    # 既存のカフェを選択して投稿された場合
+    if params[:review][:cafe_number] == "1"
+      @review.cafe_id = params[:review][:cafe_id]
+    # 新しいカフェを選択して投稿された場合
+    elsif params[:review][:cafe_number] == "2"
+      cafe_name = params[:review][:cafe_name]
+      # フォームに入力されたカフェ名が既にあるか確認
+      cafe_exist = Cafe.find_by(name: cafe_name)
+      # 未登録のカフェの場合
+      if cafe_exist.nil?
+        cafe = Cafe.new(name: cafe_name, prefectures: "", address_after: "", nearest_station: "", telephone_number: "", business_hours: "", regular_holiday: "")
+        cafe.save
+        @review.cafe_id = cafe.id
+      # 登録済みのカフェの場合
+      else
+        @review.cafe_id = cafe_exist.id
+      end
     end
     if @review.save
       redirect_to customer_reviews_path(current_customer.id)

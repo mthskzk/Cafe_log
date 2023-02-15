@@ -6,7 +6,14 @@ class Public::SearchesController < ApplicationController
     @content = params[:content]
     @method = params[:method]
     if @model == "tag"
-      records = Tag.search_post_for(@content, @method)
+      # 複数検索に対応させる
+      split_tag = @content.split(/[[:blank:]]+/)
+      records=[]
+      split_tag.each do |tag|
+        next if tag == ""
+        records += Tag.search_post_for(tag, @method)
+      end
+      records.uniq!
       # array型の配列をActive Recordに変換
       @records = Post.where(id: records.map(&:id)).page(params[:page]).per(10)
     elsif @model == "cafe"

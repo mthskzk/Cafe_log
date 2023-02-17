@@ -8,7 +8,7 @@ class Public::SearchesController < ApplicationController
     if @model == "tag"
       # 複数検索に対応させる
       split_tag = @content.split(/[[:blank:]]+/)
-      records=[]
+      records = []
       split_tag.each do |tag|
         next if tag == ""
         records += Tag.search_post_for(tag, @method)
@@ -20,7 +20,13 @@ class Public::SearchesController < ApplicationController
       records = Cafe.search_post_for(@content, @method)
       @records = Post.where(id: records.map(&:id)).page(params[:page]).per(10)
     elsif @model == "post"
-      @records = Post.search_for(@content).page(params[:page]).per(10)
+      # 複数検索に対応させる
+      split_content = @content.split(/[[:blank:]]+/)
+      records = []
+      split_content.each do |content|
+        records += Post.search_for(content)
+      end
+      @records = Post.where(id: records.map(&:id)).page(params[:page]).per(10)
     elsif @model == "customer"
       @records = Customer.search_for(@content)
     end

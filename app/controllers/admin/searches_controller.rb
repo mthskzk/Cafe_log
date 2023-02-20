@@ -12,9 +12,22 @@ class Admin::SearchesController < ApplicationController
       records = Cafe.admin_search_for(@key_word, @method)
       @records = Post.where(cafe_id: records.map(&:id)).page(params[:page]).per(10)
     elsif @model == "post"
-      @records = Post.search_for(@key_word).page(params[:page]).per(10)
+      # 複数検索に対応させる
+      split_key_word = @key_word.split(/[[:blank:]]+/)
+      records = []
+      split_key_word.each do |key_word|
+        records += Post.search_for(key_word)
+      end
+      @records = Post.where(id: records.map(&:id)).page(params[:page]).per(10)
     elsif @model == "tag"
-      records = Tag.search_post_for(@key_word, @method)
+       # 複数検索に対応させる
+      split_tag = @key_word.split(/[[:blank:]]+/)
+      records = []
+      split_tag.each do |tag|
+        next if tag == ""
+        records += Tag.search_post_for(tag, @method)
+      end
+      records.uniq!
       @records = Post.where(id: records.map(&:id)).page(params[:page]).per(10)
     end
   end
@@ -30,7 +43,13 @@ class Admin::SearchesController < ApplicationController
       records = Cafe.admin_search_for(@key_word,@method)
       @records = Review.where(cafe_id: records.map(&:id)).page(params[:page]).per(10)
     elsif @model == "review"
-      @records = Review.search_for(@key_word).page(params[:page]).per(10)
+      # 複数検索に対応させる
+      split_key_word = @key_word.split(/[[:blank:]]+/)
+      records = []
+      split_key_word.each do |key_word|
+        records += Review.search_for(key_word)
+      end
+      @records = Review.where(id: records.map(&:id)).page(params[:page]).per(10)
     end
   end
 
